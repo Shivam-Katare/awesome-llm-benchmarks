@@ -8,7 +8,8 @@
     "recordCount": 37,
     "categoriesIncluded": [
       "reasoning",
-      "tool-use"
+      "tool-use",
+      "web-search"
     ],
     "modelsIncluded": [
       "deepseek-ai/DeepSeek-V4.1-Flash",
@@ -23,6 +24,10 @@
     {
       "id": "tool-use",
       "name": "Tool Use"
+    },
+    {
+      "id": "web-search",
+      "name": "Web Search"
     }
   ],
   "models": [
@@ -1577,6 +1582,438 @@
       ]
     },
     {
+      "id": "run-glm-codex-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "No — the assumption is not justified. Microwaves passing through plastic does not establish that a particular container is suitable for reheating food.\n\n**What the official guidance says**\n\n- The FDA explains that glass, paper, ceramic, and plastic are used in microwave cooking because microwaves pass through them, but those containers can still become hot from the food, and **\"Some plastic containers should not be used in a microwave oven because they can be melted by the heat of the food inside.\"** FDA, *Microwave Ovens*: https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens\n\n- USDA food-safety guidance is more specific to this situation: **\"Only use cookware that is specially manufactured for use in the microwave oven\"**, and it warns that **\"Plastic storage containers such as margarine tubs, take-out containers, whipped topping bowls, and other one-time use containers should not be used in microwave ovens\"** because they can warp or melt, possibly causing harmful chemicals to migrate into the food. USDA FSIS, *Cooking Safely in the Microwave Oven*: http://www.fsis.usda.gov/node/3355\n\n**Why the reasoning is flawed**\n\nThe fact that microwaves pass through a material only means it isn't heated directly by the microwaves themselves. The FDA notes that the container can still get hot from contact with hot food, and USDA warns that non-microwave-rated plastic can warp or melt. The relevant question is not whether microwaves penetrate the plastic, but whether that specific container has been designed and tested for microwave reheating.\n\n**Recommendation**\n\nFor a plastic takeaway container with no microwave-safe marking and no available manufacturer instructions, the safest practical step is to **transfer the soup into a container that is explicitly labeled microwave-safe — or to microwave-safe glass or ceramic cookware — and heat it according to that container's instructions.** Follow the manufacturer's directions for any container you use, and stir/stand the food as directed so it heats safely and evenly.\n\n**What remains uncertain**\n\nThe individual container's material, thickness, and suitability can't be verified from the available information. Absence of marking does not prove it is unsafe for every possible use, but it means there is no basis from the manufacturer or official labeling to treat it as microwave-safe.",
+      "command": "time nebiusrelay --model zai-org/GLM-5.3-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/glm.txt",
+      "execution": {
+        "sessionId": "01a12ad5-1254-7332-9f34-41c3fd4cd0c7",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-01-consumer-safety",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 15.397,
+        "userSeconds": 7.278,
+        "systemSeconds": 5.177,
+        "cost": {
+          "amount": 0.0033,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 20783,
+          "input": 20206,
+          "output": 577,
+          "cachedInput": 8960,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 20783,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily via Nebius Relay (configured backend; detailed search trace not present in supplied excerpt)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "Final response is substantively grounded, but detailed search trace is not present in repository notes; per WS-01 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The recorded answer cites official source URLs. The supplied Codex excerpt does not include the detailed Tavily query/result trace."
+      ]
+    },
+    {
+      "id": "run-glm-codex-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "provisional",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "Yes — this is an expected, documented default change in Next.js 15.\n\n**Next.js 14:** `GET` Route Handlers were cached by default, unless they used a dynamic function or a dynamic config option.\n\n**Next.js 15:** `GET` Route Handlers are **not** cached by default. This is part of Next.js 15's intentional shift to a simplified rendering and caching model (the release notes explicitly list this as a breaking caching-semantics change).\n\n**Fix:** to restore static caching for a `GET` Route Handler, export a static route config option in the Route Handler file:\n\n```ts\n// app/api/.../route.ts\nexport const dynamic = 'force-static';\nexport async function GET() {\n  // ...\n}\n```\n\n**Important distinction:** this Route Handler change is separate from the also-breaking Next.js 15 change to `fetch` request caching. `fetch` requests were also made uncached by default in v15, but that's controlled independently (e.g., per-request `cache: 'force-cache'` or `fetchCache` route segment config). Making a Route Handler static does not automatically re-enable caching for `fetch` calls inside it.\n\nSources (official Next.js docs):\n- Next.js 15 release notes — section \"`GET` Route Handlers are no longer cached by default\"\n- Upgrading to Version 15 — Route Handlers section\n- Route Handlers reference — Caching section documenting `export const dynamic = 'force-static'`\n- Route Segment Config reference — `dynamic` option values",
+      "command": "cd ~/nebius-benchmark/web-search/WS-02-nextjs-caching && time nebiusrelay --model zai-org/GLM-5.3-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/glm.txt",
+      "execution": {
+        "sessionId": "01a12adb-5822-76a3-bcd6-dd8e454395a2",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-02-nextjs-caching",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 63.56,
+        "userSeconds": 5.298,
+        "systemSeconds": 4.099,
+        "cost": {
+          "amount": 0.03,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 197607,
+          "input": 196440,
+          "output": 1167,
+          "cachedInput": 150272,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 197607,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily was configured through Nebius Relay; supplied execution trace shows curl/exec attempts and DNS failures, with no successful native search trace documented.",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "preliminaryScore": 18,
+        "preliminaryMaxScore": 20,
+        "preliminaryAssessment": "Provisional; answer assessed as factually correct, but source verification scored 3/5 and successful official-document retrieval was not demonstrated in the supplied transcript.",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is grounded, but detailed search trace is not present in repository notes; per WS-02 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The supplied notes explicitly mark this run provisional (18/20) and say not to finalize it as a valid Web Search run yet.",
+        "Several curl attempts to nextjs.org failed because the host could not be resolved; the final answer may be correct, but successful source verification is not established by the supplied trace.",
+        "Preliminary human score: 18/20; keep separate from recordedStatus and independent evaluator result."
+      ],
+      "toolNamesUsed": [
+        "exec"
+      ]
+    },
+    {
+      "id": "run-glm-codex-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "## Conclusion for this buyer\n\n**The planned purchase will not qualify for the federal Previously-Owned Clean Vehicle Credit.** The relevant cutoff date is **September 30, 2025**. Because the buyer has **not** signed a binding purchase contract or made any payment for the vehicle on or before that date, and plans to acquire the vehicle from a dealer on **October 15, 2026**, the vehicle will be **acquired after the statutory deadline**. The IRS states that the New Clean Vehicle Credit, Previously-Owned Clean Vehicle Credit, and Qualified Commercial Clean Vehicle Credit are **not available for vehicles acquired after September 30, 2025**, and the Previously-Owned Clean Vehicle Credit applies only if the vehicle was acquired on or before that date.\n\n## Why the 2024 article may no longer apply\n\nA 2024 article describing a used-clean-vehicle credit of up to $4,000 could have been accurate when published, because the credit then had a later statutory termination date and ongoing eligibility rules. Under the July 4, 2025 law commonly known as the One, Big, Beautiful Bill (OBBB), the IRS explains that these clean vehicle credits were terminated for vehicles **acquired after September 30, 2025**. A 2024 article would not necessarily reflect that later statutory change and the IRS's current implementation guidance.\n\n## What “acquired” means\n\nUnder the IRS FAQ for the expiring clean vehicle credits, for sections 25E, 30D, and 45W, a vehicle is **“acquired” as of the date a written binding contract is entered into and a payment has been made**. The IRS states that a payment includes a **nominal down payment or a vehicle trade-in**. So, for a purchase to satisfy the September 30, 2025 acquisition deadline, the buyer generally must have both a **written binding contract** and a **payment** by that date.\n\nThis is distinct from **taking possession**. On the IRS used clean vehicle page, the agency says: “A vehicle is placed in service when you take possession of the vehicle.” The credit also requires the vehicle to be **placed in service**, which is generally when the buyer takes possession, but the acquisition deadline is based on the contract-and-payment date, not the possession date.\n\n## Can possession after the cutoff still be eligible?\n\nYes. The IRS FAQ states that if a taxpayer acquires a vehicle by having a **written binding contract in place and a payment made on or before September 30, 2025**, then the taxpayer will be entitled to claim the credit **when they place the vehicle in service**—which may occur after the cutoff. This is the key exception to the general cutoff: acquisition by the deadline is the critical eligibility gate, even if delivery or possession occurs later. Conversely, merely taking possession by the deadline without the binding contract and payment being completed by then would not establish acquisition for this purpose under the IRS's stated rule.\n\nFor this Texas buyer, because neither the binding contract nor a payment existed on or before September 30, 2025, the planned October 15, 2026 purchase is acquired after the cutoff and would not qualify, regardless of when possession is taken.\n\n## Other eligibility requirements\n\nEven if the cutoff had been met, the used vehicle credit would also require meeting the IRS's substantive conditions, including buying a qualified used EV or fuel cell vehicle from a licensed dealer for **$25,000 or less**, the vehicle being the first qualified sale since **August 16, 2022**, model-year requirements, buyer income limits, and other conditions. The IRS used-clean-vehicle page and Topic D FAQ cover these rules.\n\n## Official IRS sources\n\n- IRS — Used Clean Vehicle Credit: https://www.irs.gov/credits-deductions/used-clean-vehicle-credit\n- IRS — Clean vehicle tax credits: https://www.irs.gov/clean-vehicle-tax-credits\n- IRS — Clean vehicle credit seller or dealer requirements: https://www.irs.gov/credits-deductions/clean-vehicle-credit-seller-or-dealer-requirements\n- IRS — FAQs for modification of sections 25C, 25D, 25E, 30C, 30D, 45L, 45W, and 179D under OBBB: https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-known-as-the-one-big-beautiful-bill-obbb\n- IRS — Topic D FAQs on Previously-Owned Clean Vehicles Credit eligibility: https://www.irs.gov/newsroom/topic-d-frequently-asked-questions-about-eligibility-rules-for-the-previously-owned-clean-vehicles-credit\n- IRS — Instructions for Form 8936 (2025): https://www.irs.gov/instructions/i8936\n\n## Limitations and disclaimer\n\nThis answer is based on official IRS web pages available through native web search as of the current session. It does not verify the full text of the underlying statute, any taxpayer-specific facts, or later IRS updates beyond those search results. This is general informational research, not individualized tax advice.",
+      "command": "cd ~/nebius-benchmark/web-search/WS-03-ev-credit && time nebiusrelay --model zai-org/GLM-5.3-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/glm.txt",
+      "execution": {
+        "sessionId": "01a12b01-b764-77a2-b857-22d0525c0100",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-03-ev-credit",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 31.072,
+        "userSeconds": 5.572,
+        "systemSeconds": 7.417,
+        "cost": {
+          "amount": 0.0094,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 59628,
+          "input": 58368,
+          "output": 1260,
+          "cachedInput": 32768,
+          "reportedBy": "nconnect session total",
+          "breakdownTotal": 59628,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily via Nebius Relay (configured backend; detailed search trace not present in supplied excerpt)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is grounded, but detailed search trace is not present in repository notes; per WS-03 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": null,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The recorded answer cites official IRS URLs and explains the acquisition cutoff. The supplied Codex excerpt does not include detailed Tavily query/result trace."
+      ]
+    },
+    {
+      "id": "run-deepseek-codex-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "## Bottom line\n\nThe assumption is **not justified**. It's true that microwaves themselves pass through plastic — that part is correct — but that fact does *not* make a container safe for reheating. The relevant question is whether the *plastic* was designed to withstand hot food, and an unmarked takeaway container with no available manufacturer instructions cannot be shown to meet that bar.\n\n## What official guidance actually says\n\n**1. The premise is real, but incomplete.** The FDA confirms that microwaves pass through plastic (and glass, paper, ceramic), and that these containers \"cannot be heated by microwaves.\" But the same FDA page immediately adds the crucial caveat: containers \"can become hot from the heat of the food cooking inside,\" and \"**Some plastic containers should not be used in a microwave oven because they can be melted by the heat of the food inside.**\"\n— FDA, *Microwave Ovens*: https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens\n\nSo the person's reasoning stops one step too early: the plastic isn't heated by the microwaves, it's heated by the *food*, and that's exactly what can melt or warp an unsuitable container.\n\n**2. Unlabeled containers are specifically named as unsuitable.** USDA FSIS says: \"Only use cookware that is specially manufactured for use in the microwave oven. Glass, ceramic containers, and all plastics that are safe to use usually will be labeled for microwave oven use.\" It then lists under what *not* to use: \"Cold storage containers: margarine tubs, cottage cheese and yogurt cartons, etc. These materials are **not approved for cooking**.\"\n— FSIS, *Cooking with Microwave Ovens*: http://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cooking-microwave-ovens\n\n**3. Takeaway containers are named explicitly.** A parallel FSIS publication states: \"Plastic storage containers such as margarine tubs, **take-out containers**, whipped topping bowls, and other one-time use containers should not be used in microwave ovens. These containers can warp or melt, possibly causing harmful chemicals to migrate into the food.\"\n— FSIS, *Cooking Safely in the Microwave Oven*: http://www.fsis.usda.gov/node/3355\n\nFSIS also notes these items are cold-storage, one-time-use containers not designed for cooking (FSIS *Are utensils microwave safe?*: https://ask.fsis.usda.gov/article/Are-utensils-microwave-safe).\n\n**4. Why the \"no marking\" detail matters.** FSIS's framing is that safe plastics \"usually will be labeled for microwave oven use\" — so the label is the signal you're supposed to rely on. With no marking *and* no manufacturer instructions, there is no evidence the container was designed or cleared for reheating hot food. Note also that the recycling number (e.g. the little triangle) tells you nothing about microwave suitability — it's a recycling code, not a safety grade (FDA/FSIS-consistent guidance; the FDA page above establishes the general principle that not all plastics are microwave-safe).\n\n**5. What to do if it's already happened.** FSIS treats food cooked in packaging that has warped or melted as unsafe to eat, and warns against reusing a damaged container.\n— FSIS, *Cooking Safely in the Microwave Oven*: http://www.fsis.usda.gov/node/3355\n\n## Recommended safest practical step\n\nTransfer the soup to a container that is explicitly labeled microwave-safe, or to glass or ceramic (no metallic trim or paint). Reheat there, cover with a lid or microwave-safe wrap vented at a corner, and confirm the food is steaming hot (FSIS advises reheating leftovers to 165 °F/74 °C). If the original container does get heated by accident, check it for warping or melting; if it has deformed, discard the food and retire the container.\n\n## What remains uncertain\n\n- No authoritative source provides a blanket \"all unmarked plastic is dangerous\" rule — and I am **not** claiming that. Many food-contact plastics meet FDA food-contact standards; some simply aren't engineered for *heat*. The safe course reflects the absence of verified suitability, not proof of harm.\n- Whether a *specific* unmarked container would actually leach anything, or at what level, cannot be determined without its resin type and manufacturer data — which are unavailable here. FSIS's \"possibly causing harmful chemicals to migrate\" is a precautionary statement, not a measured finding for this container.\n- \"Microwave-safe\" is itself a manufacturer claim rather than an FDA certification; it reflects compliance with food-contact material rules and heat/temperature conditions of use (see FDA page above for the regulatory framing). Absent that claim, you have nothing to rely on.\n\n**Key sources:** FDA — https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens · FSIS — http://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cooking-microwave-ovens · FSIS — http://www.fsis.usda.gov/node/3355 · FSIS — https://ask.fsis.usda.gov/article/Are-utensils-microwave-safe",
+      "command": "mkdir -p runs && time nebiusrelay --model deepseek-ai/DeepSeek-V4.1-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/deepseek.txt",
+      "execution": {
+        "sessionId": "01a12ad3-d504-7c70-99a8-3c7392b4cf81",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-01-consumer-safety",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 29.97,
+        "userSeconds": 4.179,
+        "systemSeconds": 2.249,
+        "cost": {
+          "amount": 0.0177,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 53424,
+          "input": 51591,
+          "output": 1833,
+          "cachedInput": 21504,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 53424,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily via Nebius Relay (configured backend; detailed search trace not present in supplied excerpt)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "Final response is substantively grounded, but detailed search trace is not present in repository notes; per WS-01 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The recorded answer cites official source URLs. The supplied Codex excerpt does not include the detailed Tavily query/result trace."
+      ]
+    },
+    {
+      "id": "run-deepseek-codex-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "I'll research the official Next.js documentation on this change.Let me verify the Next.js 14 documentation statement for the \"before\" behavior.Yes — this is an expected, documented default change in Next.js 15, not a bug in your app.\n\n## What changed for `GET` Route Handlers\n\n**Next.js 14 (previous behavior):**\n> \"In Next 14, Route Handlers that used the `GET` HTTP method were cached by default unless they used a dynamic function or dynamic config option.\"\n— Next.js 15 release blog\n\nSo a plain `GET` handler (using the `Response` object, not reading the `Request`) was **statically cached by default**; it only became dynamic if it used a Dynamic API (`cookies()`, `headers()`, `searchParams`, reading `Request`), or an explicit dynamic config/all-`fetch` opt-out. The Next.js 14 docs stated this as: \"Route Handlers are cached by default when using the `GET` method with the `Response` object.\"\n\n**Next.js 15 (new behavior):**\n> \"In Next.js 15, `GET` functions are not cached by default. You can still opt into caching using a static route config option such as `export const dynamic = 'force-static'`.\"\n— Next.js 15 release blog\n\nThe reference docs record it explicitly in the version history:\n> `v15.0.0-RC` — \"The default caching for `GET` handlers was changed from static to dynamic.\"\n— route.js file conventions\n\nAnd the current Route Handlers docs confirm the general rule:\n> \"Route Handlers are not cached by default. You can, however, opt into caching for `GET` methods. Other supported HTTP methods are not cached.\"\n— Route Handlers\n\nSo after the upgrade, your previously-static endpoint now **executes on every request** until you re-opt in.\n\n## The documented configuration change to restore static caching\n\nIn your `route.ts`, add the route segment config:\n\n```ts\n// app/items/route.ts\nexport const dynamic = 'force-static'\n\nexport async function GET() {\n  // ...\n}\n```\n\nThis is exactly the change given in the official Upgrading: Version 15 guide:\n\n```ts\nexport const dynamic = 'force-static'\n\nexport async function GET() {}\n```\n\nFor revalidating (ISR-style) caching instead of permanent static, use the `revalidate` segment config:\n\n```ts\nexport const revalidate = 60\nexport async function GET() { /* ... */ }\n```\n\nNotes to get this right in your app:\n\n- **Only `GET` is affected.** `POST`, `PUT`, `DELETE`, etc. were never cached, and remain uncached. The docs warn: \"Other supported HTTP methods are not cached, even if they are placed alongside a `GET` method that is cached, in the same file.\"\n- **`force-static` has side effects:** it makes Dynamic APIs like `cookies()`, `headers()`, and `useSearchParams()` return empty values. Only apply it if the handler genuinely shouldn't read request-time data. If your route reads the request, leave it dynamic and consider caching the *data* instead.\n- **Special handlers** (`sitemap.ts`, `opengraph-image.tsx`, `icon.tsx`) remain static by default unless they use Dynamic APIs or dynamic config.\n\n## Don't confuse this with `fetch` caching\n\nThese are **two separate changes**, both part of Next.js 15's caching-semantics shift, and the docs list them separately:\n\n- **`GET` Route Handlers** → now dynamic by default; re-opt-in with `export const dynamic = 'force-static'` (per above).\n- **`fetch` requests** → also no longer cached by default in Next.js 15; per-request re-opt-in is `fetch(url, { cache: 'force-cache' })`, per the upgrade guide. That's a different mechanism and a different fix.\n\nYour Route Handler's caching is governed by the **route segment config**, not by the `fetch` cache option of any `fetch()` it calls.\n\n## Verification limitation\n\nI verified the Next.js 14 pre-change behavior through the official Next.js 15 blog/upgrade docs, which describe the prior default in their own words, plus the `route.js` version-history entry marking the `v15.0.0-RC` flip. I did not independently load a live Next.js 14 documentation page (search budget was exhausted), so the precise 14.x wording (\"cached by default when using the `GET` method with the `Response` object\") comes from a secondary source quoting those docs rather than a direct fetch of the 14 docs. The behavior itself — static-by-default in 14 → dynamic-by-default in 15, opt back in with `dynamic = 'force-static'` — is confirmed by the official 15 release blog and upgrade guide cited above.\n\n**Sources:** Next.js 15 blog · Upgrading to Version 15 · route.js reference · Route Handlers · Route Segment Config",
+      "command": "cd ~/nebius-benchmark/web-search/WS-02-nextjs-caching && time nebiusrelay --model deepseek-ai/DeepSeek-V4.1-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/deepseek.txt",
+      "execution": {
+        "sessionId": "01a12ada-13b7-7253-b471-a9bf5057f41b",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-02-nextjs-caching",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 27.985,
+        "userSeconds": 5.159,
+        "systemSeconds": 3.65,
+        "cost": {
+          "amount": 0.0181,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 54320,
+          "input": 52328,
+          "output": 1992,
+          "cachedInput": 39680,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 54320,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily via Nebius Relay (configured backend; detailed search trace not present in supplied excerpt)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is grounded, but detailed search trace is not present in repository notes; per WS-02 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The supplied notes mark the response PASS. The excerpt does not include a complete native web-search trace, so source retrieval cannot be independently audited from this result object alone."
+      ]
+    },
+    {
+      "id": "run-deepseek-codex-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "codex",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "I'll research this using official IRS sources.Let me pull more exact IRS wording.## 1. Conclusion for this buyer\n\n**No.** This purchase will not qualify for the federal Previously-Owned Clean Vehicle Credit (IRC § 25E).\n\n- The buyer plans to acquire the vehicle on **October 15, 2026**, which is **after the cutoff date of September 30, 2025**.\n- The IRS states plainly: the Previously-Owned Clean Vehicle Credit \"is not available for vehicles acquired … after Sept. 30, 2025,\" and it \"applies only if the vehicle was acquired … on or before Sept. 30, 2025.\" (IRS – Used Clean Vehicle Credit; IRS – Clean vehicle tax credits)\n- The relevant cutoff date is **September 30, 2025** — the date Congress, via the One, Big, Beautiful Bill (OBBB), terminated § 25E (and the § 30D new-vehicle and § 45W commercial credits) for vehicles acquired after that date.\n\n## 2. Why the 2024 article may have been accurate then but not now\n\nWhen a 2024 article said eligible used EVs could get \"up to $4,000,\" that was correct **at the time**: under § 25E, the credit equaled **30% of the sale price, capped at $4,000**, for a qualified used EV/FCV bought from a licensed dealer for $25,000 or less. (IRS – Used Clean Vehicle Credit)\n\nWhat changed is the law, not the article's accuracy in 2024. The reconciliation statute enacted **July 4, 2025** (OBBB) **repealed** these credits for vehicles acquired after **September 30, 2025**. The IRS now shows an \"Update\" banner on all three credit pages confirming the credits \"are not available for vehicles acquired … after Sept. 30, 2025.\" (IRS – Clean vehicle tax credits; IRS – Used Clean Vehicle Credit)\n\nSo the article's $4,000 figure remains the **amount formula** in the old rule, but the **eligibility window has closed**. A buyer purchasing in October 2026 is outside that window.\n\n## 3. What the IRS means by \"acquired\" — and why it differs from taking possession\n\nThe IRS draws a sharp distinction between two events:\n\n1. **Acquisition** — the event that triggers the termination rule. In its OBBB FAQs, the IRS states: *\"For purposes of sections 25E, 30D, and 45W, a vehicle is 'acquired' as of the date a written binding contract is entered into and a payment has been made. A payment includes a nominal downpayment or a vehicle trade-in.\"* (IRS – OBBB FAQs)\n2. **Placed in service** — the event that controls the *tax year* in which the credit is claimed. The IRS defines this as when the buyer **takes possession**: *\"A vehicle is placed in service when you take possession of the vehicle.\"* (IRS – Clean vehicle tax credits)\n\nThe credit is claimed \"for the year the vehicle was placed in service,\" but the **cutoff attaches to acquisition, not possession**. The IRS explains the interplay directly:\n\n> \"The vehicle must be placed in service for you to claim the credit. If a vehicle is placed in service after Sept. 30, 2025, you must have acquired the vehicle on or before Sept. 30, 2025, to be eligible for the credit. You can demonstrate acquisition by entering into a binding written contract and making a payment on the vehicle on or before Sept. 30, 2025.\" (IRS – Used Clean Vehicle Credit)\n\nSo two witnesses establish acquisition by the deadline: a **binding written contract** and **a payment** (a nominal downpayment or a trade-in qualifies). This matters because a buyer could sign and pay in September 2025 yet receive the car later. (Note: this specific \"acquired\" interpretation was clarified by IRS FAQs released **August 21, 2025**.) (Chapman and Cutler summary of the IRS FAQs)\n\n## 4. Could taking possession after the cutoff still be eligible?\n\n**Yes — in one specific situation.** Taking possession (placing the vehicle in service) **after** September 30, 2025 **can be consistent with eligibility**, provided the vehicle was **acquired on or before September 30, 2025** under the contract-plus-payment test.\n\nThe IRS commercial-credit page states it explicitly: *\"If a vehicle is placed in service after Sept. 30, 2025, the taxpayer must have acquired the vehicle on or before Sept. 30, 2025, to be eligible for the credit.\"* (IRS – Commercial Clean Vehicle Credit) The seller/dealer page adds: *\"If the vehicle was acquired on or before Sept. 30, 2025, the taxpayer may still be eligible for these credits when the vehicle is placed in service.\"* (IRS – Clean vehicle credit seller or dealer requirements)\n\nThis is the **exception** to the general termination rule: late delivery/possession is tolerated; late *acquisition* is not.\n\n**But this exception does not help the buyer in the question.** Their facts state they had **not** signed a binding purchase contract and had **not** made any payment on or before **September 30, 2025**. Therefore the vehicle was **not acquired** by the deadline, and the exception is unavailable — the general termination rule governs, and the credit is not allowed.\n\n## 5. Sources and limitations\n\nOfficial IRS sources:\n- Used Clean Vehicle Credit — https://www.irs.gov/credits-deductions/used-clean-vehicle-credit\n- Clean vehicle tax credits (hub, with the \"acquired after Sept. 30, 2025\" update) — https://www.irs.gov/clean-vehicle-tax-credits\n- FAQs for modification of §§ 25C, 25D, 25E, 30C, 30D, 45L, 45W, and 179D under OBBB (the \"acquired\" definition) — https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-known-as-the-one-big-beautiful-bill-obbb\n- Commercial Clean Vehicle Credit and dealer requirements pages (restating the placed-in-service/acquisition interplay) — https://www.irs.gov/credits-deductions/commercial-clean-vehicle-credit and https://www.irs.gov/credits-deductions/clean-vehicle-credit-seller-or-dealer-requirements\n\nSupporting (non-IRS) context on the statutory repeal: Congressional Research Service, \"Clean Vehicle Tax Credits\" — https://www.congress.gov/crs_external_products/IF/HTML/IF12600.web.html\n\n**Limitations / things I could not verify:** IRS web pages are periodically reformatted and their update banners can be reworded, so exact phrasing may shift; the underlying statutory text (IRC § 25E as amended by P.L. 119-21) is the controlling authority, and I did not retrieve the primary statutory text in full here. I also cannot verify the buyer's other eligibility facts (income limits, dealer licensing, sale price ≤ $25,000, vehicle model year at least two years earlier, etc.) — those would matter only if acquisition had occurred by the deadline. This is a summary of published IRS guidance, **not individualized tax advice**; the buyer should confirm with a qualified tax professional or the IRS.",
+      "command": "cd ~/nebius-benchmark/web-search/WS-03-ev-credit && time nebiusrelay --model deepseek-ai/DeepSeek-V4.1-Flash codex exec --skip-git-repo-check \"$(cat prompt.txt)\" < /dev/null 2>&1 | tee runs/deepseek.txt",
+      "execution": {
+        "sessionId": "01a12b00-93fe-79e3-aa99-bc2aeb2851df",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/web-search/WS-03-ev-credit",
+        "provider": "nconnect",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 40.426,
+        "userSeconds": 11.948,
+        "systemSeconds": 15.038,
+        "cost": {
+          "amount": 0.017,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 47939,
+          "input": 45076,
+          "output": 2863,
+          "cachedInput": 18176,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 47939,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
+      ],
+      "searchBackend": "Tavily via Nebius Relay (configured backend; detailed search trace not present in supplied excerpt)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Codex execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is grounded, but detailed search trace is not present in repository notes; per WS-03 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": null,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "dataQualityNotes": [
+        "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
+        "The recorded answer cites official IRS URLs and explains the acquisition cutoff. The supplied Codex excerpt does not include detailed Tavily query/result trace."
+      ]
+    },
+    {
       "id": "run-deepseek-claude-code-reasoning-01",
       "taskId": "reasoning-task-1",
       "taskName": "Task 1",
@@ -2922,6 +3359,460 @@
       ]
     },
     {
+      "id": "run-deepseek-claude-code-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "## Verdict: The assumption is not justified\n\nThe reasoning is half-true but leads to the wrong conclusion. Microwaves really do pass through plastic — but that is not what makes a container safe or unsafe to microwave.\n\n**The FDA states the relevant physics and then the caveat directly:**\n\n> \"Glass, paper, ceramic, or plastic containers are used in microwave cooking because microwaves pass through these materials.\"\n> \"Although such containers cannot be heated by microwaves, **they can become hot from the heat of the food cooking inside**.\"\n> \"**Some plastic containers should not be used in a microwave oven because they can be melted by the heat of the food inside.**\"\n> — FDA, Microwave Ovens\n\nSo \"microwaves pass through plastic\" only means the plastic isn't heated *directly* by the microwaves. The container is still heated *indirectly* by the hot soup it holds — and that is exactly the exposure that matters for a container never designed or verified for it.\n\n## What the official guidance says\n\n**Use only containers labeled for microwave use.**\n- USDA FSIS: use only cookware \"specifically made for microwave ovens\" and look for \"microwave-safe\" labeling; glass and ceramic are generally fine. It lists cold-storage containers such as margarine and yogurt tubs as ones to avoid because they are \"not approved for cooking and chemicals can migrate into food,\" and says not to use any container or wrap that has \"warped or melted during heating.\" — USDA FSIS, Cooking with Microwave Ovens (live page blocked automated access; text retrieved via Internet Archive snapshot)\n- Singapore Food Agency: \"**Only use plastic containers that are labeled as microwave-safe for microwave cooking or reheating.**\" — SFA, Safe Use of Plastic Food Packaging\n\n**Takeaway containers are a specific concern.** SFA describes single-use takeaway containers as \"disposable items designed for single use and are not intended for repeated storage of food,\" and says that for reheating, \"Only use those takeaway food containers that are labeled microwave-safe.\" A takeaway container with no microwave marking falls outside that guidance.\n\n**Why the label matters — migration.** FDA regulates food-contact plastics through premarket review that assesses how much of the material can migrate into food under the intended conditions of use. For containers intended **specifically** for microwave use, FDA's chemistry guidance specifies migration testing with a fatty-food simulant \"at 130 °C (266 °F) for 15 minutes\" and an aqueous-food simulant \"at 100 °C (212 °F) for 15 minutes.\" — FDA, Guidance for Industry: Food Contact Substances (Chemistry Recommendations). FDA also notes generally that \"small, measurable amounts of the packaging materials may migrate into food\" and that its review assesses that migration for safety. — FDA, Bisphenol A (BPA): Use in Food Contact Application\n\nThe practical point: a \"microwave-safe\" marking signals the manufacturer intends and (per FDA rules) has data for that use. A container with no such marking has not been presented to the consumer as intended for microwave heating.\n\n## What remains uncertain (stated honestly)\n\n- **Absence of a label is not proof of harm.** FDA does not require every plastic container to carry a \"microwave safe\" label, and many unlabeled containers are simply untested or unrated for that use rather than known to be dangerous. I found no authoritative source stating that an unmarked container is *definitely* unsafe.\n- **I cannot verify this specific container.** Without the resin/recycling code or manufacturer instructions, no regulator's guidance can determine its suitability. Recycling codes indicate recyclability, not heat or microwave safety, and should not be treated as evidence either way.\n- **No authoritative source supports the specific claim that \"microwaves pass through plastic, therefore it's safe.\"** FDA's own text contradicts the conclusion drawn from that premise.\n\n## Safest practical next step\n\nTransfer the soup to a container that is explicitly labeled microwave-safe or made of heatproof glass or ceramic, and reheat it there. As general reheating practice, FSIS advises heating until steaming hot throughout and, for food-safety reasons, checking that it reaches 165 °F (74 °C). If you ever see a plastic container warp or soften in the microwave, do not use that container again.\n\nThis neither condemns all plastics nor endorses the unmarked one: it follows the one rule every authority I checked gives in common — for microwave heating, use only a container labeled for that use.\n\n**Sources**\n- FDA — Microwave Ovens\n- USDA FSIS — Cooking with Microwave Ovens (accessed via Internet Archive)\n- FDA — Guidance for Industry: Preparation of Premarket Submissions for Food Contact Substances (Chemistry Recommendations)\n- FDA — Bisphenol A (BPA): Use in Food Contact Application\n- Singapore Food Agency — Safe Use of Plastic Food Packaging",
+      "command": "time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "3ebf5c58-7c81-48a5-8d69-fab50c403eba",
+        "workingDirectory": "~/coding-agent-workspaces/WS-01-deepseek-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 100.989,
+        "userSeconds": 7.62,
+        "systemSeconds": 3.385,
+        "apiDurationMs": 120294,
+        "cost": {
+          "amount": 0.2131,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 2.042685,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 309309,
+          "input": 288002,
+          "output": 21307,
+          "cachedInput": 137728,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 309309,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 7)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response successfully concludes the assumption is unjustified, cites official FDA and USDA FSIS safety guidance, recommends transferring soup to a microwave-safe container, avoids overgeneralization, clearly identifies uncertainties, and demonstrates active web retrieval.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 1",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "Native Claude web search was active (webSearchRequests: 7).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
+      "id": "run-deepseek-claude-code-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "## Short answer\n\nYes — this is an **expected, documented default change** in Next.js 15. It is a deliberate breaking change to the caching heuristics, not a bug or a configuration mistake on the team's part.\n\nThe official Next.js 15 release post states it directly, under \"Caching Semantics (Breaking)\":\n\n> \"In Next 14, Route Handlers that used the `GET` HTTP method were cached by default unless they used a dynamic function or dynamic config option. In Next.js 15, `GET` functions are **not cached by default**. You can still opt into caching using a static route config option such as `export dynamic = 'force-static'`.\"\n> — Next.js 15 release blog, \"Caching Semantics\" → \"`GET` Route Handlers are no longer cached by default\"\n\nThe upgrade guide confirms it and gives the exact opt-in:\n\n> \"`GET` functions in Route Handlers are no longer cached by default. To opt `GET` methods into caching, you can use a route config option such as `export const dynamic = 'force-static'` in your Route Handler file.\"\n> — How to upgrade to version 15 → Route Handlers\n\nAnd the `route.js` API reference records it in the version history table:\n\n> `v15.0.0-RC` — \"The default caching for `GET` handlers was changed from static to dynamic\"\n> — `route.js` API reference → Version History\n\n## Behavior in each version\n\n**Next.js 14:** A `GET` route handler (`app/**/route.js`) was **cached by default** — i.e. treated as a static route and statically rendered/prerendered at build time — *unless* it used a dynamic function (e.g. `cookies()`, `headers()`) or a dynamic config option. So an unchanged handler with a plain `GET()` and no request-dependent APIs produced a static, repeatedly-served response.\n\n**Next.js 15:** The same handler is **dynamic (uncached) by default**. Each request executes the handler. The team's endpoint \"no longer behaves as a cached endpoint\" precisely because the default flipped from static → dynamic at the route-segment level.\n\n## Documented configuration change to restore static caching\n\nIf the endpoint's response genuinely does not depend on request-time data and should be prerendered/cached, add a route segment config export to the route file:\n\n```js title=\"app/api/route.js\"\nexport const dynamic = 'force-static'\n\nexport async function GET() {\n  // ...\n  return Response.json({ /* ... */ })\n}\n```\n\n`force-static` forces the route handler to be static, which restores the Next.js 14 default behavior for that handler. (The `revalidate` option is also documented for route handlers when you want cached data with a refresh interval — see the route.js docs, \"Revalidating Cached Data\".)\n\nDecide based on the handler's actual behavior:\n- **Response is request-independent and you want it served from cache** → add `export const dynamic = 'force-static'`.\n- **Response must reflect per-request data (auth, user-specific, real-time)** → the new Next.js 15 default is already correct; leave it dynamic, and make sure not to accidentally force-static a handler that reads cookies/headers.\n\n## Important distinction: Route Handler caching ≠ `fetch` caching\n\nThese are two separate defaults, both changed in Next.js 15 but configured differently. Do not conflate them:\n\n| | Next.js 14 default | Next.js 15 default | How to opt back in |\n|---|---|---|---|\n| **`GET` Route Handler** (the route itself) | Cached (static) | **Uncached (dynamic)** | `export const dynamic = 'force-static'` on the route file |\n| **`fetch()` request** (inside a component/handler) | Cached | **Uncached** | `fetch(url, { cache: 'force-cache' })`, or `export const fetchCache = 'default-cache'` |\n\nThe upgrade guide treats these as separate sections: \"`fetch` requests\" (opt in with `cache: 'force-cache'` or `fetchCache = 'default-cache'`) versus \"Route Handlers\" (opt in with `dynamic = 'force-static'`). Setting `dynamic = 'force-static'` affects the route's rendering; it is not the same lever as the `fetch` cache option, and one does not substitute for the other.\n\n## Verification limitations / caveats\n\n- Everything above is quoted from the official `nextjs.org` documentation pages linked inline. I verified the release blog, the version-15 upgrade guide, and the `route.js` API reference directly rather than relying on memory.\n- **Version drift caution:** the docs site is now on a newer major (the reference pages carry `lastUpdated: 2026-10-01 / 2026-04-30` and describe v16 \"Cache Components\"). In the current Route Segment Config index, `dynamic` is no longer listed as a top-level option and is documented as removed **when Cache Components is enabled in v16**. That does *not* affect a Next.js 15 app: for v15, `export const dynamic = 'force-static'` is the documented, supported opt-in as shown in the v15 upgrade guide above.\n- I could not load a standalone `/route-segment-config/dynamic` page (it returned HTTP 404 — the docs restructured), so the precise per-value descriptions of `dynamic` (`'auto' | 'force-dynamic' | 'error' | 'force-static'`) are not reproduced from a dedicated page here. The `'force-static'` value itself is confirmed verbatim by both the release blog and the upgrade guide.\n- To be certain which default the team's installed version uses, check their `package.json` for the exact `next` version and confirm whether any handler-level `dynamic` export already exists.",
+      "command": "time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "e8b2785f-6aea-4da7-b3f7-7bb783eb8ed0",
+        "workingDirectory": "~/coding-agent-workspaces/WS-02-deepseek-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 14.676,
+        "userSeconds": 2.197,
+        "systemSeconds": 1.046,
+        "apiDurationMs": 10950,
+        "cost": {
+          "amount": 0.0267,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 0.45877,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 81014,
+          "input": 78329,
+          "output": 2685,
+          "cachedInput": 34816,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 81014,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 0)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is comprehensive, but available logs show 0 native web search requests were executed; per WS-02 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 2",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "Native Claude web search was active (webSearchRequests: 0).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
+      "id": "run-deepseek-claude-code-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "## Conclusion\n\n**No.** Under current federal law, this planned October 15, 2026 purchase cannot qualify for the federal Previously-Owned Clean Vehicle Credit (IRC § 25E). The credit was terminated by the One Big Beautiful Bill Act (OBBBA, P.L. 119-21, enacted July 4, 2025) for any vehicle **acquired after September 30, 2025**.\n\n- **Relevant cutoff date: September 30, 2025.** The IRS states plainly: \"The credit will not be allowed with respect to any vehicle acquired after September 30, 2025,\" and \"Previously-Owned Clean Vehicle Credit is not available for vehicles acquired after Sept. 30, 2025.\"\n- Because the buyer has not signed a binding contract or made a payment on or before that date — and the purchase is over a year later — the acquisition falls entirely after the statutory cutoff. There is no path back in for this vehicle.\n\n## Why the 2024 article may have been accurate then\n\nWhen that article was published, § 25E was live. The Inflation Reduction Act of 2022 created the Previously-Owned Clean Vehicle Credit effective January 1, 2023, and it was originally scheduled to run through 2032 — so \"up to $4,000\" (30% of sale price, capped at $4,000 for a used EV bought from a licensed dealer under $25,000) was correct at the time. The law changed after publication: OBBBA terminated § 25E (along with the new clean vehicle credit § 30D and the commercial credit § 45W) for vehicles acquired after Sept. 30, 2025. A 2024 article cannot reflect a July 2025 statutory repeal, so its general rule no longer governs a 2026 purchase.\n\n## What the IRS means by \"acquired,\" and why the contract/payment test matters\n\nThe IRS does **not** equate \"acquired\" with physically receiving the car. Per the Form 8936 instructions and the OBBB FAQ:\n\n- A vehicle is **acquired** \"as of the date a written binding contract is entered into and a payment has been made.\" A payment \"includes a nominal down payment or a vehicle trade-in.\"\n- **Taking possession is a separate event.** The IRS treats a vehicle as **placed in service** \"when you take possession of the vehicle.\" Acquisition alone does not entitle the taxpayer to a credit — the vehicle must also be placed in service.\n\nSo the two concepts diverge: **acquired** = contract + payment; **placed in service** = possession/delivery. The cutoff statute keys on the *acquisition* date, which is why a binding written contract plus payment on or before Sept. 30, 2025 is the critical fact for this buyer — and they don't have it.\n\n## Could possession after the cutoff still be consistent with eligibility?\n\n**Yes — but only in the transition case the buyer does not meet.** The IRS provides that if \"a taxpayer acquires a vehicle by having a written binding contract in place and a payment made on or before September 30, 2025,\" they may still claim the credit \"when they place the vehicle in service,\" \"even if the vehicle is placed in service after September 30, 2025.\" The IRS confirms: \"If a vehicle is placed in service after Sept. 30, 2025, you must have acquired the vehicle on or before Sept. 30, 2025.\"\n\nThat exception protects buyers who locked in *before* the deadline and took delivery *after* it. Here the timeline is reversed: neither the contract nor the payment existed by the deadline, and delivery is in October 2026. The transition rule therefore does not help this buyer.\n\n## Limitations\n\n- I can verify the IRS's published guidance on the § 25E termination and the acquisition definition; I **cannot** verify the specific vehicle's characteristics (price, model-year gap, prior-transfer history), which are moot anyway given the termination.\n- The buyer's location (Texas) does not affect the federal cutoff; any state-level EV incentive would be governed by separate Texas rules I have not researched.\n- This is a general explanation of published IRS guidance, **not individualized tax advice**. The buyer should consult a qualified tax professional about their specific situation.\n\n## Official IRS sources\n\n- Used Clean Vehicle Credit — \"not available for vehicles acquired after Sept. 30, 2025\"; placed in service on possession; acquisition via binding written contract + payment by the cutoff.\n- Clean vehicle credit seller or dealer requirements — § 25E/30D/45W unavailable for vehicles acquired after Sept. 30, 2025; credit if placed in service later when acquired on/before that date.\n- Instructions for Form 8936 (2025) — definition of \"acquired\" (written binding contract + payment; nominal down payment or trade-in).\n- OBBB FAQ — P.L. 119-21, §§ 25C/25D/25E/30C/30D/45L/45W/179D — § 25E termination and the acquisition/placed-in-service transition rule.\n- Clean vehicle tax credits — overview landing page.",
+      "command": "time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "82f34ab6-e4e5-42c7-b889-8f2c5a200d1a",
+        "workingDirectory": "~/coding-agent-workspaces/WS-03-deepseek-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 52.08,
+        "userSeconds": 5.571,
+        "systemSeconds": 2.319,
+        "apiDurationMs": 76660,
+        "cost": {
+          "amount": 0.1026,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 0.87048,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 102404,
+          "input": 85481,
+          "output": 16923,
+          "cachedInput": 33984,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 102404,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 2)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly concludes that the buyer's purchase is ineligible under IRC section 25E, identifies the September 30, 2025 acquisition cutoff, explains the historical $4,000 rule and legislative termination, accurately defines acquisition as requiring a binding written contract plus payment, distinguishes acquisition from possession/placed-in-service, correctly applies the late-possession transition rule, cites authoritative IRS sources, includes appropriate general research disclaimers, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": true,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 3",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "Native Claude web search was active (webSearchRequests: 2).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "## Short answer: No — the assumption is not justified\n\n\"Microwaves pass through plastic\" is true, but it isn't the relevant safety question. Microwaves also pass through the food, and the food heats the container from contact. The real issue is whether the plastic can withstand that heat without melting, warping, or migrating substances into the food — and only testing establishes that.\n\n## What authoritative guidance says\n\n**FDA** — The FDA regulates plastics that contact food and has migration-testing protocols for containers intended for microwave use (FDA guidance for food contact substances). Its microwave-oven guidance notes that some plastics can melt from the heat of the food and should not be used in the microwave (FDA: Microwave Ovens). A \"microwave-safe\" label is the manufacturer's assurance that the container passed migration testing; absence of the label means that assurance hasn't been established — not proof of danger, but no verified basis for microwave use.\n\n**USDA FSIS** — Only use cookware \"specially manufactured for microwave use\"; glass, ceramic, and plastic containers labeled microwave-safe are the recommended choices (USDA FSIS: Cooking with Microwave Ovens).\n\n**Government consumer guidance (Singapore Food Agency)** — Takeaway plastic containers are designed for single/initial use and should only be microwaved if specifically labeled \"microwave-safe\" (SFA: Safe Use of Plastic Food Packaging).\n\n**Clemson University HGIC** — Warns against reusing margarine tubs, takeout, and other unlabeled plastics in the microwave; they can melt or warp (HGIC: Microwave Food Safety).\n\nAn important nuance: an unlabeled container is **not necessarily unsafe** — some takeout containers (e.g., polypropylene, recycling code #5) are made of heat-tolerant plastic and some are in fact microwave-rated. The problem is that without a label or manufacturer instructions, there's no way for the user to know which is which.\n\n## Also worth noting (unverified specifics)\n\n- Whether this particular container can tolerate microwave heating **cannot be verified** without the manufacturer's labeling — that's the residual uncertainty.\n- Some independent testing and health sources (e.g., Harvard Health) note that heating increases migration of substances from plastics into food, though FDA's migration limits for labeled containers include large safety margins. I'd flag any specific health-harm claims about an unlabeled container as not established here.\n\n## Safest practical next step\n\n**Transfer the soup to a container you know is microwave-safe** — glass or ceramic dishware, or any container bearing a microwave-safe label — and reheat that. This avoids the uncertainty entirely, costs nothing, and works regardless of what the takeout container is made of. If the container happens to show a microwave-safe symbol, using it per that label would be acceptable.",
+      "command": "time nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "61092095-1fb7-47ca-995f-0151b3693993",
+        "workingDirectory": "~/coding-agent-workspaces/WS-01-glm-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 21.818,
+        "userSeconds": 2.789,
+        "systemSeconds": 1.475,
+        "apiDurationMs": 25862,
+        "cost": {
+          "amount": 0.0063,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 0.245765,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 37909,
+          "input": 36098,
+          "output": 1811,
+          "cachedInput": 5376,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 37909,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 2)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response successfully concludes the assumption is unjustified, cites official FDA and USDA FSIS safety guidance, recommends transferring soup to a microwave-safe container, avoids overgeneralization, clearly identifies uncertainties, and demonstrates active web retrieval.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 1",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
+        "Native Claude web search was active (webSearchRequests: 2).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "Yes — this is an expected, documented default change in Next.js 15. I verified it directly from nextjs.org just now.\n\n## What changed\n\n**Next.js 14 (App Router):** `GET` Route Handlers were **cached by default** (static) unless they used dynamic functions or explicitly opted out.\n\n**Next.js 15:** The default flipped. `GET` handlers are now **uncached (dynamic) by default**. Two official sources confirm this:\n\n- The route.js API reference version history states:\n  > `v15.0.0-RC` — \"The default caching for `GET` handlers was changed from static to dynamic\"\n- The Version 15 upgrade guide, under **Route Handlers**, states:\n  > \"`GET` functions in Route Handlers are no longer cached by default. To opt `GET` methods into caching, you can use a route config option such as `export const dynamic = 'force-static'` in your Route Handler file.\"\n\n## How to restore caching\n\nAdd a route segment config export to the handler file:\n\n```js\n// app/api/route.js\nexport const dynamic = 'force-static'\n\nexport async function GET() {}\n```\n\nAlternatives, depending on intent:\n- `export const revalidate = 60` — caches with time-based revalidation (ISR-style), as shown in the route.js docs' \"Revalidating Cached Data\" section.\n- `export const dynamic = 'force-dynamic'` — the opposite, explicitly keeps it dynamic.\n\n## Don't confuse this with `fetch` caching\n\nThe same upgrade changed **`fetch` requests** too — they are also no longer cached by default — but that's a separate mechanism:\n\n- **Route Handler GET caching** → controlled by route segment config (`dynamic = 'force-static'`, `revalidate`) on the handler file.\n- **`fetch` data caching** → controlled per-call with `cache: 'force-cache'`, or route-wide with `export const fetchCache = 'force-cache'`.\n\nIf your handler's loss of caching was actually caused by an uncached `fetch` inside it, that's a different fix: add `{ cache: 'force-cache' }` to the fetch call or `export const fetchCache = 'force-cache'` — but note that in Next 15 the route handler itself remains dynamic unless you opt it in separately.\n\n## What to change in your app\n\nFor each GET handler that should be cached again, decide whether it should be fully static (`dynamic = 'force-static'`) or periodically revalidated (`revalidate = N`). Be aware that handlers using dynamic request data (cookies, headers, query params tied to the request) can't be made static — the framework will treat them as dynamic regardless, so verify the endpoint doesn't depend on request state before forcing static.\n\nSources:\n- Next.js route.js API reference\n- Next.js 15 upgrade guide",
+      "command": "time nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "dfe74705-39c5-44e6-95e3-0e45ad60898f",
+        "workingDirectory": "~/coding-agent-workspaces/WS-02-glm-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 10.793,
+        "userSeconds": 1.475,
+        "systemSeconds": 0.715,
+        "apiDurationMs": 8523,
+        "cost": {
+          "amount": 0.0067,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 0.228795,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 42383,
+          "input": 41539,
+          "output": 844,
+          "cachedInput": 20992,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 42383,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 0)",
+      "evaluation": {
+        "status": "manual_review_required",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": null,
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The technical answer is comprehensive, but available logs show 0 native web search requests were executed; per WS-02 reviewPolicy, independent verification requires manual review.",
+        "statusMatchesRecordedStatus": null,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": null,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 2",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
+        "Native Claude web search was active (webSearchRequests: 0).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "## Conclusion for this buyer\n\n**This purchase does not qualify for the Previously-Owned Clean Vehicle Credit.** The relevant cutoff date is **September 30, 2025**. Under the 2025 tax law (OBBB, referenced by the IRS as the \"One, Big, Beautiful Bill\"), the credit is available only for vehicles **acquired on or before Sept. 30, 2025**, and is \"not available for vehicles acquired after Sept. 30, 2025.\" Your buyer signed nothing and paid nothing by that date, and plans to buy on October 15, 2026 — well after the cutoff. The credit cannot be claimed.\n\n## Why the 2024 article may have been accurate then but no longer applies\n\nIn 2024, the credit under what was then IRC § 25E (created by the Inflation Reduction Act) applied prospectively to used EVs acquired from 2023 through 2032, so a 2024 article saying eligible used EV purchases \"may qualify for up to $4,000\" was accurate when published. But Congress later changed the law: the OBBB legislation terminated the credit for vehicles acquired after September 30, 2025. Tax articles describe the law in effect when written; they don't update themselves. The IRS's current pages reflect the post-OBBB rules, not the 2024-era rules. **Limitation:** I can verify the IRS pages state the Sept. 30, 2025 acquisition deadline; I have not independently pulled the statutory text of OBBB itself.\n\n## What the IRS means by \"acquired\"\n\nFor clean vehicle credits, acquisition is not the same as taking delivery. The IRS treats a vehicle as **acquired when the taxpayer has both (1) entered into a binding written contract to purchase it and (2) made a payment on the vehicle**. This is the test the IRS uses specifically to determine the acquisition date when possession timing matters. Taking **possession** is a separate concept the IRS ties to the vehicle being **\"placed in service\"** — the credit is claimed when the vehicle is placed in service, which generally happens when the buyer takes possession. So:\n\n- A binding written contract alone, or a payment alone, is not enough — the IRS language requires both, on or before the deadline.\n- Merely browsing, negotiating, or an oral agreement is not acquisition; the contract must be binding and written, and payment must actually be made by Sept. 30, 2025.\n\n## Can possession after the cutoff still be consistent with eligibility?\n\nYes — the general rule (acquire by Sept. 30, 2025) has an explicit accommodation for delivery timing. If a buyer took possession (placed the vehicle in service) **after** Sept. 30, 2025, the credit can still apply **if the vehicle was acquired on or before that date**, and acquisition is demonstrated by the binding written contract plus payment made on or before Sept. 30, 2025. The IRS's own dealer-reporting guidance reflects this: dealers report sales through IRS Energy Credits Online within 3 calendar days of the buyer taking possession for pre-deadline acquisitions — i.e., pre-deadline acquisitions with later possession remain within the system. This buyer is the reverse case: both contract and payment (and possession) all fall after the deadline, so the exception cannot help.\n\n## Official IRS sources\n\n- Used Clean Vehicle Credit — credit not available for vehicles acquired after Sept. 30, 2025; binding written contract + payment test; 30% of sale price up to $4,000; $25,000 price cap; income limits ($150,000 MFJ / $112,500 HoH / $75,000 other).\n- Clean vehicle tax credits — overview of the post-OBBB clean vehicle credit rules, including the acquisition standard.\n- Clean vehicle credit seller or dealer requirements — dealer time-of-sale reporting and the 3-calendar-day IRS Energy Credits Online reporting tied to the buyer taking possession.\n\n## Limitations and caveat\n\n- The credit also has eligibility conditions (dealer sale, ≤$25,000 sale price, vehicle at least two model years old, income limits, buyer not already having used the credit) — moot here, but stated for completeness.\n- This is general information based on current IRS public guidance, not individualized tax advice; a tax professional should be consulted for the buyer's specific situation.",
+      "command": "time nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --output-format json < /dev/null",
+      "execution": {
+        "sessionId": "b4bb3e15-4d24-485c-8b05-24fa177fa328",
+        "workingDirectory": "~/coding-agent-workspaces/WS-03-glm-claude-run1",
+        "provider": "nconnect",
+        "route": "Nebius Token Factory",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 39.133,
+        "userSeconds": 2.911,
+        "systemSeconds": 1.544,
+        "apiDurationMs": 41005,
+        "cost": {
+          "amount": 0.0338,
+          "currency": "USD",
+          "reportedBy": "nconnect session total",
+          "alternateSdkReportedAmount": 0.460625,
+          "alternateSdkReportedBy": "Claude Code JSON total_cost_usd; source modelUsage.costBasis is unknown and this is kept separate from the relay session cost"
+        },
+        "tokens": {
+          "totalReported": 63157,
+          "input": 49052,
+          "output": 14105,
+          "cachedInput": 0,
+          "reportedBy": "nconnect session total; input includes cached input",
+          "breakdownTotal": 63157,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed model alias; the run completed."
+      ],
+      "searchBackend": "Native Claude web search via Nebius Relay / NConnect (webSearchRequests: 2)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied Claude Code execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly concludes that the buyer's purchase is ineligible under IRC section 25E, identifies the September 30, 2025 acquisition cutoff, explains the historical $4,000 rule and legislative termination, accurately defines acquisition as requiring a binding written contract plus payment, distinguishes acquisition from possession/placed-in-service, correctly applies the late-possession transition rule, cites authoritative IRS sources, includes appropriate general research disclaimers, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": true,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 3",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
+        "Native Claude web search was active (webSearchRequests: 2).",
+        "Cost amounts include both NConnect relay session cost and Claude Code SDK reported cost."
+      ]
+    },
+    {
       "id": "run-deepseek-opencode-reasoning-01",
       "taskId": "reasoning-task-1",
       "taskName": "Task 1",
@@ -4210,6 +5101,430 @@
         "OpenCode used its internal todowrite tool for task tracking; it is not an MCP server tool and is excluded from toolNamesUsed.",
         "The recorded trace shows the rollback of DEP-INV-455 and subsequent health/dependency checks reporting recovery.",
         "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "## Research note on tooling\n\nI don't have a `web_search` tool in this environment — only `webfetch` (direct URL fetch). Also, `fda.gov` and `fsis.usda.gov` returned 404/403 to my fetcher (bot protection), so I retrieved the official pages via the Internet Archive's snapshots of those exact URLs. The links below cite the official URLs as requested, and each quote is taken verbatim from the verified archive capture.\n\n---\n\n## 1. Is the assumption justified?\n\n**No.** The belief that \"it must be safe because microwaves pass through plastic\" is a common misconception that is directly addressed and rejected by official safety guidance.\n\nWhile microwaves do pass through microwave-transparent materials (such as glass, paper, ceramic, and certain plastics) without heating the container *directly*, **the container still heats up indirectly from the hot food inside it**:\n\n> \"Glass, paper, ceramic, or plastic containers are used in microwave cooking because microwaves pass through these materials. Although such containers cannot be heated by microwaves, they can become hot from the heat of the food cooking inside. Some plastic containers should not be used in a microwave oven because they can be melted by the heat of the food inside.\"  \n> — **FDA**, *Microwave Ovens* (Consumer Guide)\n\nTherefore, the fact that microwaves pass through plastic is **not** a guarantee of safety. The true limiting factor is whether the specific plastic formulation can tolerate the temperature of boiling/near-boiling soup (up to 100 °C / 212 °F) without softening, melting, or migrating substances into the food.\n\n---\n\n## 2. Relevant official safety guidance\n\n### A. Only use containers labeled for microwave use\nBoth the FDA and the USDA Food Safety and Inspection Service (FSIS) instruct consumers to look specifically for a microwave-safe label or manufacturer instructions:\n\n- **USDA FSIS guidance:**\n  > \"Only use cookware that is specially manufactured for use in the microwave oven. Glass, ceramic containers, and all plastics that are labeled 'microwave safe' are safe for use.\"  \n  > — **USDA FSIS**, *Cooking with Microwave Ovens*\n\n- **FDA regulatory framework:**  \n  The FDA evaluates food-contact substances, including plastics, specifically for their intended conditions of use (temperature and duration). Under FDA's Chemistry Recommendations for Food Contact Substances, microwave-use plastics undergo specific migration testing with food-simulating liquids under elevated temperatures:\n  > Fatty-food simulant migration testing is conducted at **130 °C (266 °F) for 15 minutes**; aqueous-food simulant testing is conducted at **100 °C (212 °F) for 15 minutes**.  \n  > — **FDA**, *Guidance for Industry: Preparation of Premarket Submissions for Food Contact Substances (Chemistry Recommendations)*\n\n  An unmarked, single-use container has **not** been tested or certified by the manufacturer to meet these migration thresholds under microwave conditions.\n\n### B. Takeaway and single-use packaging warnings\nOfficial guidance specifically cautions against reusing cold-storage, single-use, or unlabeled takeout packaging for microwave reheating:\n\n- **USDA FSIS warns:**\n  > \"Cold storage containers such as margarine tubs, whipped topping bowls, and cheese dishes are not approved for cooking and chemicals can migrate into the food.\"  \n  > \"Do not reuse trays and containers that came with microwave convenience meals. They are designed for one-time use only.\"  \n  > — **USDA FSIS**, *Cooking Safely in the Microwave Oven*\n\n- Takeaway containers are often made from polystyrene (foam or rigid clear), polyolefins without thermal stabilizers, or other plastics designed only to hold food at serving temperatures, not to withstand repeated or high-heat microwave reheating.\n\n### C. Nuance: not all plastic containers are unsafe\nTo be clear, **plastic itself is not inherently unsafe in a microwave**. Many plastics (typically specially formulated polypropylene, often marked with resin identification code #5 and a microwave-safe icon) are formulated, tested, and labeled specifically for microwave use. The danger lies in using an **unmarked, unverified** container where the plastic type, heat rating, and additive formulation are unknown.\n\n---\n\n## 3. What remains uncertain\n\nBecause this specific container has no markings, no resin identification code (recycling number), and no manufacturer instructions:\n\n1. **Exact polymer composition is unknown:** It is impossible to determine without laboratory testing whether the container is polypropylene (which often tolerates reheating), polystyrene (which softens at ~80–90 °C and should not be microwaved), PET, or another resin.\n2. **Safe temperature limit is unknown:** The container may warp, melt, or release breakdown substances at soup temperatures, or it may withstand them — but there is no authoritative, reliable way for a consumer to know in advance.\n3. **Chemical migration:** While migration of plasticizers or low-molecular-weight oligomers is the reason regulators require testing, I cannot make specific claims about toxic health effects or chemical release for this particular container because the plastic formulation is unidentified.\n\n---\n\n## 4. Safest practical next step\n\n**Do not heat the soup in the takeaway container.**\n\n1. **Transfer the soup** to a microwave-safe container — such as a ceramic bowl, microwave-safe glass (e.g., Pyrex), or a plastic bowl that explicitly displays the \"Microwave Safe\" text or squiggly-lines icon.\n2. **Cover loosely** with a paper towel or microwave-safe lid to prevent splatter while allowing steam to escape.\n3. **Reheat** until steaming hot (USDA FSIS recommends an internal temperature of 165 °F / 74 °C for reheated leftovers).\n4. **Keep the takeaway container** only for room-temperature or cold storage (if clean), or recycle/discard it per local recycling rules.\n\n---\n\n## Cited Official Source URLs\n\n1. **FDA — Microwave Ovens (Consumer Information):**  \n   https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens  \n   *(Verified via Internet Archive snapshot from web.archive.org)*\n2. **USDA FSIS — Cooking with Microwave Ovens:**  \n   https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cooking-microwave-ovens  \n   *(Verified via Internet Archive snapshot from web.archive.org)*\n3. **FDA — Guidance for Industry: Preparation of Premarket Submissions for Food Contact Substances (Chemistry Recommendations):**  \n   https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-preparation-premarket-submissions-food-contact-substances-chemistry-recommendations  \n   *(Verified via Internet Archive snapshot from web.archive.org)*\n4. **USDA FSIS — Leftovers and Food Safety:**  \n   https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety",
+      "command": "time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1d9a726ffezeqm5B48dhJwP3",
+        "workingDirectory": "~/coding-agent-workspaces/WS-01-deepseek-opencode-run1",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 61.095,
+        "userSeconds": 25.896,
+        "systemSeconds": 8.877,
+        "cost": {
+          "amount": 0.0434085,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 361306,
+          "input": 122555,
+          "output": 3099,
+          "reasoning": 2436,
+          "cachedInput": 233216,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 125654,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "OpenCode direct webfetch retrieval via internet archive / official portals (webfetch: 16; web_search tool not exposed in session)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response successfully concludes the assumption is unjustified, cites official FDA and USDA FSIS safety guidance, recommends transferring soup to a microwave-safe container, avoids overgeneralization, clearly identifies uncertainties, and demonstrates active web retrieval.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 1",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "OpenCode session utilized direct URL retrieval (webfetch) and archive fallback to verify FDA and USDA guidance.",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 10 execution steps."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "## Verdict\n\nYes — this is an **expected, documented breaking default change** in Next.js 15. It is not a bug or a regression. The Next.js 15 release notes and the official 14→15 upgrade guide both state it explicitly.\n\n---\n\n## Behavior in each version\n\n**Next.js 14 (App Router)**\n\n> \"In Next 14, Route Handlers that used the `GET` HTTP method were cached by default unless they used a dynamic function or dynamic config option.\"  \n> — *Next.js 15 Release Blog (\"Caching Semantics\")*\n\nIn Next.js 14, a `GET` Route Handler without dynamic functions (such as `cookies()`, `headers()`, or reading `request.url` searchParams) was treated as **statically evaluated at build time** and its response was cached statically by default.\n\n**Next.js 15 (App Router)**\n\n> \"`GET` Route Handlers are no longer cached by default in Next.js 15. To opt `GET` methods into caching, you can use a route config option such as `export const dynamic = 'force-static'` in your Route Handler file.\"  \n> — *Next.js 15 Upgrade Guide (\"Route Handlers\")*\n\n> \"The default caching for `GET` handlers was changed from static to dynamic.\"  \n> — *Next.js `route.js` API Reference (Version History: v15.0.0-RC)*\n\nIn Next.js 15, `GET` functions execute dynamically on every incoming request by default. The endpoint the team observed is now running on every request because the segment-level default flipped from static to dynamic.\n\n---\n\n## Documented configuration to restore static caching\n\nIf the endpoint's data is truly static (independent of the incoming request) and should be pre-rendered at build time or cached statically, add the `dynamic = 'force-static'` export to the route file:\n\n```ts\n// app/api/my-endpoint/route.ts (or route.js)\nexport const dynamic = 'force-static';\n\nexport async function GET() {\n  const data = await getStaticData();\n  return Response.json(data);\n}\n```\n\n### If you need periodic revalidation (time-based static caching):\nIn addition to `force-static`, you can export `revalidate` if the endpoint should be cached statically but refreshed periodically:\n\n```ts\n// app/api/my-endpoint/route.ts\nexport const dynamic = 'force-static';\nexport const revalidate = 3600; // revalidate at most once every hour\n\nexport async function GET() {\n  return Response.json({ timestamp: Date.now() });\n}\n```\n\n> **Caution:** If the `GET` handler reads `request` parameters, request headers (`headers()`), or cookies (`cookies()`), forcing static with `export const dynamic = 'force-static'` will cause those request-specific values to be empty or return build-time mock values. Only use `force-static` if the handler does not depend on request-specific context.\n\n---\n\n## Route Handler caching vs. `fetch` caching (crucial distinction)\n\nNext.js 15 changed **both** defaults, but they govern two completely different layers of the framework. Developers frequently confuse them:\n\n| Level | What it governs | Next.js 14 default | Next.js 15 default | How to opt back into caching in Next 15 |\n| :--- | :--- | :--- | :--- | :--- |\n| **Route Handler (`GET`)** | The HTTP endpoint itself (`app/**/route.ts`) | **Cached** (static) by default | **Uncached** (dynamic) by default | `export const dynamic = 'force-static'` in the route file |\n| **`fetch()` requests** | Individual outgoing HTTP calls inside components/handlers | **Cached** (`force-cache`) by default | **Uncached** (`no-store`) by default | `fetch(url, { cache: 'force-cache' })` or `export const fetchCache = 'default-cache'` |\n\n- Opting an internal `fetch()` into `cache: 'force-cache'` inside an uncached Next.js 15 Route Handler will cache the *upstream response*, but the *Route Handler endpoint itself* will still run on every incoming client request.\n- Conversely, setting `export const dynamic = 'force-static'` caches the entire Route Handler response at build time, preventing the handler function from executing on subsequent requests.\n\n---\n\n## Official documentation citations\n\n1. **Next.js 15 Release Blog — Caching Semantics:**  \n   https://nextjs.org/blog/next-15#caching-semantics  \n   *(Section: \"`GET` Route Handlers are no longer cached by default\")*\n2. **Next.js 15 Upgrade Guide — Route Handlers:**  \n   https://nextjs.org/docs/app/building-your-application/upgrading/version-15#route-handlers  \n   *(Section: \"Route Handlers: `GET` functions in Route Handlers are no longer cached by default\")*\n3. **Next.js API Reference — `route.js` Version History:**  \n   https://nextjs.org/docs/app/api-reference/file-conventions/route#version-history  \n   *(v15.0.0-RC entry: \"The default caching for `GET` handlers was changed from static to dynamic\")*\n\n---\n\n## Limitations / Documentation Note\n\nIn current (canary/v16) documentation, Next.js introduces *Cache Components* and the `use cache` directive, which will eventually replace some route-segment config exports. However, for a team upgrading specifically from **version 14 to version 15**, `export const dynamic = 'force-static'` remains the official, fully supported, and documented mechanism to restore static caching on a `GET` Route Handler.",
+      "command": "export OPENCODE_ENABLE_EXA=1; time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1bb9e1effe7Nsff69OxXNpSI",
+        "workingDirectory": "~/coding-agent-workspaces/WS-02-deepseek-opencode-run1",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 41.283,
+        "userSeconds": 17.308,
+        "systemSeconds": 5.619,
+        "cost": {
+          "amount": 0.0282495,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 167648,
+          "input": 75065,
+          "output": 2296,
+          "reasoning": 2479,
+          "cachedInput": 87808,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 77361,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "Exa web search via OpenCode (OPENCODE_ENABLE_EXA=1; websearch: 4, webfetch: 4)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly explains Next.js 14 and 15 Route Handler caching behavior, provides the documented export const dynamic = 'force-static' configuration, clearly distinguishes Route Handler caching from fetch request caching, cites official Next.js documentation, provides clear implementation caveats, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 2",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "Exa search was enabled (OPENCODE_ENABLE_EXA=1) with 4 websearch and 4 webfetch calls.",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 6 execution steps."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "## Conclusion\n\n**This buyer does not qualify for the federal Previously-Owned Clean Vehicle Credit for a purchase on October 15, 2026.** The relevant cutoff date is **September 30, 2025**.\n\nUnder recent federal legislation amending Internal Revenue Code Section 25E (enacted as part of Public Law 119-21, commonly known as the *One, Big, Beautiful Bill* or OBBBA, enacted July 4, 2025), the Previously-Owned Clean Vehicle Credit was **terminated for any vehicle acquired after September 30, 2025**. Because the buyer has not signed a binding contract or made a payment on or before September 30, 2025, and will not buy the vehicle until October 15, 2026, the vehicle is acquired after the statutory cutoff. The credit cannot be claimed.\n\n---\n\n## Why the 2024 article was accurate then, but no longer applies\n\n- **When published in 2024:** Under the Inflation Reduction Act of 2022 (Public Law 117-169), IRC § 25E provided a tax credit of 30% of the sale price (up to a maximum of $4,000) for qualifying previously-owned clean vehicles purchased from a licensed dealer, and the statute was originally scheduled to run through December 31, 2032. The 2024 article accurately described the law in effect at that time.\n- **Why it no longer applies:** On July 4, 2025, Congress enacted Public Law 119-21 (OBBBA), which enacted an early sunset for clean vehicle credits. Specifically, Section 70303 of the Act amended IRC § 25E to terminate the credit for vehicles acquired after September 30, 2025. An article written in 2024 could not anticipate the subsequent 2025 statutory repeal.\n\n---\n\n## What the IRS means by \"acquired\" vs. \"taking possession\"\n\nThe IRS draws a strict distinction between **acquiring** a vehicle and **placing it in service (taking possession)**:\n\n### 1. Acquisition Definition & Requirements\nAccording to the IRS (see Instructions for Form 8936 and the OBBBA Clean Vehicle FAQ):\n> A taxpayer has **acquired** a vehicle when they have entered into a **written binding contract** to purchase the vehicle and have **made a payment** (including a nominal down payment or a trade-in).\n\nBoth elements must occur together to establish the date of acquisition. An oral agreement, an expression of interest, or entering a waitlist does *not* constitute acquisition.\n\n### 2. Distinction from Taking Possession\nTaking physical possession of the vehicle constitutes **placing the vehicle in service**. Under general tax principles and IRC § 25E:\n- Acquisition establishes *when rights and obligations to the vehicle attached*.\n- Taking possession establishes the *tax year in which the credit is claimed*.\n\nBecause the statutory sunset specifically bars credits for vehicles *acquired* after September 30, 2025, entering into the binding contract and paying a deposit on or before September 30, 2025 is the decisive legal hurdle. Merely planning to take possession in 2026 without a pre-deadline contract and payment means the vehicle was never acquired on time.\n\n---\n\n## Can taking possession after the cutoff be consistent with eligibility?\n\n**Yes — but only under the specific \"transition rule\" for timely acquisitions.**\n\nThe IRS guidance provides an explicit rule for buyers who contracted before the sunset but took delivery later:\n\n- **The Rule:** If a taxpayer **acquired** the vehicle on or before September 30, 2025 (by having both a written binding contract and a payment in place on or before that date), they **may still claim the credit when they place the vehicle in service, even if they take possession after September 30, 2025**.\n- **Application to this buyer:** This exception protects buyers whose vehicle delivery was delayed into late 2025 or 2026 after entering a timely contract. However, because this buyer explicitly *did not* sign a binding contract or make a payment on or before September 30, 2025, they do not satisfy the acquisition requirement. Consequently, taking possession on October 15, 2026 is an ineligible purchase, not a protected late delivery.\n\n---\n\n## Official IRS Sources Cited\n\n1. **IRS: Used Clean Vehicle Credit (Overview & Termination Notice):**  \n   https://www.irs.gov/credits-deductions/used-clean-vehicle-credit  \n   *(States: \"Previously-Owned Clean Vehicle Credit is not available for vehicles acquired after Sept. 30, 2025.\")*\n\n2. **IRS: Clean Vehicle Credit Seller or Dealer Requirements:**  \n   https://www.irs.gov/credits-deductions/clean-vehicle-credit-seller-or-dealer-requirements  \n   *(Details dealer time-of-sale reporting rules and explains that the credit is not allowed for vehicles acquired after Sept. 30, 2025, while confirming that vehicles acquired on or before Sept. 30, 2025 may still qualify if placed in service later).*\n\n3. **IRS: Clean Vehicle Tax Credits Overview:**  \n   https://www.irs.gov/clean-vehicle-tax-credits  \n   *(Summarizes the changes to clean vehicle credits under the One, Big, Beautiful Bill, P.L. 119-21).*\n\n4. **IRS: Instructions for Form 8936 (Clean Vehicle Credits):**  \n   https://www.irs.gov/instructions/i8936  \n   *(Defines when a vehicle is acquired — binding written contract plus payment — versus placed in service).* \n\n5. **IRS: Frequently Asked Questions under Public Law 119-21 (OBBBA):**  \n   https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-known-as-the-one-big-beautiful-bill-obbb  \n   *(Provides the official administrative questions and answers on the transition rules for § 25E acquisitions prior to October 1, 2025).* \n\n---\n\n## Limitations and Scope\n\n- This analysis is based strictly on current, published IRS guidance and federal statutory changes enacted in Public Law 119-21 as of October 2026. It addresses only federal tax law; state-level incentives (such as Texas emissions reduction grants) were not researched and are governed separately.\n- This explanation is provided for general informational and educational purposes and **does not constitute individualized tax advice**. Taxpayers should consult a certified public accountant or qualified tax attorney regarding their specific tax filing.",
+      "command": "export OPENCODE_ENABLE_EXA=1; time nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1b3cb66ffe3LAaq4VIG3nuUu",
+        "workingDirectory": "~/coding-agent-workspaces/WS-03-deepseek-opencode-run1",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 16.951,
+        "userSeconds": 9.729,
+        "systemSeconds": 4.115,
+        "cost": {
+          "amount": 0.0089181,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 24604,
+          "input": 21531,
+          "output": 1633,
+          "reasoning": 416,
+          "cachedInput": 1024,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 23164,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "Exa web search via OpenCode (OPENCODE_ENABLE_EXA=1; websearch: 2)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly concludes that the buyer's purchase is ineligible under IRC section 25E, identifies the September 30, 2025 acquisition cutoff, explains the historical $4,000 rule and legislative termination, accurately defines acquisition as requiring a binding written contract plus payment, distinguishes acquisition from possession/placed-in-service, correctly applies the late-possession transition rule, cites authoritative IRS sources, includes appropriate general research disclaimers, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": true,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 3",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
+        "Exa websearch was active (2 websearch calls returning 12 unique official IRS URLs).",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 2 execution steps."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-web-search-01",
+      "taskId": "web-search-WS-01",
+      "taskName": "WS-01 — Consumer safety: microwave-safe plastic containers",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A person wants to reheat soup in a plastic takeaway container. The container has no microwave-safe marking, and the manufacturer instructions are unavailable. They believe it must be safe because microwaves pass through plastic.\n\nUse the native web_search tool to research official, authoritative safety guidance. Determine whether the assumption is justified, explain the relevant safety guidance, and recommend the safest practical next step.\n\nCite the official source URLs and ensure each important claim is supported by the source that establishes it. Do not rely on memory alone.\n\nDo not claim that all plastic containers are unsafe, and do not make unsupported claims about toxic chemicals or health effects. If you cannot verify the answer from authoritative sources, state what remains uncertain.",
+      "responseMarkdown": "## Verdict: the assumption is not justified\n\nThe belief that a plastic container \"must be safe because microwaves pass through plastic\" is fundamentally flawed.\n\nWhile microwaves do pass through microwave-transparent materials without directly exciting their molecules, **the food inside heats up, and the hot food in turn heats the container by conduction**:\n\n> \"Glass, paper, ceramic, or plastic containers are used in microwave cooking because microwaves pass through these materials. Although such containers cannot be heated by microwaves, they can become hot from the heat of the food cooking inside. Some plastic containers should not be used in a microwave oven because they can be melted by the heat of the food inside.\"\n> — **FDA, Microwave Ovens**\n\nThe hazard is not whether microwaves heat the plastic directly, but whether the plastic can withstand the heat transferred from boiling or near-boiling soup without softening, warping, melting, or migrating chemical components into the food.\n\n---\n\n## What the official guidance actually says\n\n### 1. Only use cookware specifically labeled for microwave use\nBoth the U.S. Food and Drug Administration (FDA) and the USDA Food Safety and Inspection Service (FSIS) explicitly advise against assuming an unmarked container is safe:\n\n- **USDA FSIS:**\n  > \"Only use cookware that is specially manufactured for use in the microwave oven. Glass, ceramic containers, and all plastics that are labeled 'microwave safe' are safe for use.\"\n  > — **USDA FSIS, Cooking with Microwave Ovens**\n\n- **FDA:** Under its premarket food contact substance review process, plastics intended for microwave heating undergo migration testing under high-temperature conditions (e.g. up to 130 °C for fatty foods). A \"microwave-safe\" marking or explicit manufacturer instruction is the consumer's only confirmation that the plastic formulation has been evaluated for high-heat food contact. Absence of the label means no such verification exists.\n\n### 2. Takeaway, single-use, and cold-storage containers are explicitly singled out as unsafe for reheating\nOfficial regulators warn that packaging designed for single-use takeaway or cold food storage is not formulated to withstand microwave cooking temperatures:\n\n- **USDA FSIS:**\n  > \"Cold storage containers such as margarine tubs, whipped topping bowls, and cheese dishes are not approved for cooking and chemicals can migrate into the food.\"\n  > \"Do not reuse trays and containers that came with microwave convenience meals. They are designed for one-time use only.\"\n  > — **USDA FSIS, Leftovers and Food Safety** and **Cooking Safely in the Microwave Oven**\n\n- **UK Food Standards Agency (FSA):**\n  > Advises that plastics must be used strictly in accordance with their intended purpose and manufacturer instructions, noting that containers not intended for microwave heating can degrade or transfer substances when heated.\n\nTakeaway containers are often made from plastics such as polystyrene (rigid or foam) or lightweight polyethylene, which have low melting points (often well below 100 °C / 212 °F) and easily deform when in contact with hot soup.\n\n---\n\n## Important nuance — not all plastic is unsafe\n\nIt is important not to over-generalize: **not all plastic containers are unsafe for microwave use.**\n\nMany specially engineered plastics — most commonly microwave-grade polypropylene (Resin Identification Code 5, \"PP\") formulated with heat stabilizers — are specifically designed, rigorously tested, and officially certified for microwave reheating. When a container carries the words **\"Microwave Safe\"**, displays the standard microwave symbol (three wavy horizontal lines), or comes with manufacturer instructions stating it can be microwaved, it is safe to use in accordance with those instructions.\n\nThe safety issue here is not that the container is plastic, but that it is **unmarked, unverified, and of unknown composition**.\n\n---\n\n## What remains uncertain\n\nBecause this particular takeaway container lacks markings and manufacturer instructions, several facts cannot be verified:\n\n1. **The specific polymer:** Without a Resin Identification Code or manufacturer specification, it is impossible to determine whether the container is polypropylene (which *might* tolerate heat if properly formulated), polystyrene, polyethylene, or a blend.\n2. **Actual degree of hazard:** It cannot be definitively asserted that this specific container *will* leach harmful substances or melt; some heavy-duty commercial takeaway containers are made of microwave-safe polypropylene but simply omit consumer labeling. However, because you cannot tell by sight or touch, treating it as untested is the only scientifically sound approach.\n3. **Chemical identity of additives:** Plastic formulations contain plasticizers, stabilizers, and antioxidants that vary by grade. Without manufacturer data, no claims can be made about specific chemicals.\n\n---\n\n## Recommended next step (safest practical action)\n\n1. **Transfer the soup to a known-safe container before heating:**  \n   Pour the soup into a ceramic bowl, heat-resistant glassware (e.g., Pyrex), or a reusable plastic container explicitly labeled \"Microwave Safe\".\n2. **Cover appropriately:**  \n   Use a microwave-safe plate, ceramic saucer, or a clean paper towel as a loose splash guard to let steam vent safely.\n3. **Heat thoroughly:**  \n   Reheat the soup until steaming hot throughout (USDA FSIS recommends an internal temperature of 165 °F / 74 °C for leftover soups and gravies).\n4. **Keep or discard the takeaway container:**  \n   Use the original plastic container only for cold food storage (if washed), or rinse and place it in the appropriate recycling bin.\n\n---\n\n## Official Source URLs Cited\n\n- **FDA — Microwave Ovens:**  \n  https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens\n- **FDA — 5 Tips for Using Your Microwave Oven Safely:**  \n  https://www.fda.gov/consumers/consumer-updates/5-tips-using-your-microwave-oven-safely\n- **USDA FSIS — Cooking with Microwave Ovens:**  \n  https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cooking-microwave-ovens\n- **USDA FSIS — Leftovers and Food Safety:**  \n  https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety\n- **USDA FSIS — Cooking Safely in the Microwave Oven:**  \n  https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cooking-safely-microwave-oven\n- **UK Food Standards Agency — Food Contact Materials Guidance:**  \n  https://www.food.gov.uk/business-guidance/food-contact-materials",
+      "command": "export OPENCODE_ENABLE_EXA=1; time nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1cef1a2ffe9f8LaW6DB1IxOA",
+        "workingDirectory": "~/coding-agent-workspaces/WS-01-glm-opencode-run1",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 122.577,
+        "userSeconds": 46.667,
+        "systemSeconds": 16.262,
+        "cost": {
+          "amount": 0.0118237,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 378145,
+          "input": 50745,
+          "output": 2651,
+          "reasoning": 5773,
+          "cachedInput": 318976,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 53396,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "Exa web search and webfetch via OpenCode (OPENCODE_ENABLE_EXA=1; websearch: 9, webfetch: 9)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w01_consumer_safety.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response successfully concludes the assumption is unjustified, cites official FDA and USDA FSIS safety guidance, recommends transferring soup to a microwave-safe container, avoids overgeneralization, clearly identifies uncertainties, and demonstrates active web retrieval.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:59:24+00:00",
+        "evaluationCriteria": "Evaluate whether the response refutes the premise using FDA/USDA guidance, cites authoritative sources, advises transferring to microwave-safe containers, avoids blanket claims, states uncertainties, and demonstrates search execution.",
+        "checks": {
+          "conclusion": true,
+          "fda_evidence": true,
+          "usda_evidence": true,
+          "source_claim_alignment": true,
+          "practical_recommendation": true,
+          "avoids_overgeneralization": true,
+          "uncertainty_handling": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
+      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 1",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
+        "Exa search and direct webfetch were active (9 websearch and 9 webfetch calls).",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 12 execution steps."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-web-search-02",
+      "taskId": "web-search-WS-02",
+      "taskName": "WS-02 — Next.js caching behavior",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A team upgraded its Next.js App Router application from version 14 to version 15. After the upgrade, a GET Route Handler that previously behaved as a cached endpoint no longer behaves that way.\n\nUsing official Next.js documentation, determine whether this is an expected default change. Explain the behavior in each version and provide the documented configuration change that restores static caching when appropriate.\n\nCite the official release or upgrade documentation. Do not confuse GET Route Handler caching with the separate caching behavior of fetch requests.\n\nExplain the relevant behavior clearly enough for a developer to decide what to change in their application. Do not rely on memory alone; if you cannot verify a claim from official documentation, state that limitation.",
+      "responseMarkdown": "Yes — this is an **expected, documented breaking change** in Next.js 15, not a bug. I verified every detail below against official Next.js documentation and release materials.\n\n---\n\n## 1. What changed between Next.js 14 and 15?\n\n### Next.js 14 Behavior (App Router)\nIn Next.js 14, `GET` Route Handlers (`app/**/route.js|ts`) were **cached by default** unless they opted out or used dynamic functions:\n- If a `GET` handler did not use the `Request` object, `cookies()`, `headers()`, or search parameters, Next.js evaluated it at build time and served the cached response statically.\n- The official Next.js 15 release post explicitly confirms the prior baseline:\n  > *\"In Next 14, Route Handlers that used the `GET` HTTP method were cached by default unless they used a dynamic function or dynamic config option.\"*\n\n### Next.js 15 Behavior (App Router)\nIn Next.js 15, the default was intentionally inverted: **`GET` Route Handlers are now dynamic (uncached) by default**:\n- Every incoming request now invokes the handler function unless you explicitly opt in to static caching.\n- Two primary official sources document this breaking change:\n  1. **Next.js 15 Release Blog (2024-10-21), section \"Caching Semantics\":**\n     > *\"`GET` Route Handlers are no longer cached by default in Next.js 15. To opt `GET` methods into caching, you can use a route config option such as `export const dynamic = 'force-static'` in your Route Handler file.\"*\n  2. **Next.js 15 Upgrade Guide, section \"Route Handlers\":**\n     > *\"`GET` functions in Route Handlers are no longer cached by default. To opt `GET` methods into caching, you can use a route config option such as `export const dynamic = 'force-static'` in your Route Handler file.\"*\n  3. **`route.js` API reference, Version History:**\n     > Version `v15.0.0-RC`: *\"The default caching for `GET` handlers was changed from static to dynamic.\"*\n\n---\n\n## 2. How to restore static caching\n\nIf the endpoint does not rely on per-request information (such as auth headers, user session cookies, or dynamic query strings) and its response can be safely generated at build time, export the route segment configuration option `dynamic = 'force-static'` from your handler file:\n\n```typescript\n// app/api/my-endpoint/route.ts\nexport const dynamic = 'force-static';\n\nexport async function GET() {\n  const data = await getSharedData();\n  return Response.json(data);\n}\n```\n\n### If you need periodic revalidation (time-based static caching):\nIf the endpoint's response can be static but needs to refresh periodically, combine `force-static` with `revalidate` (in seconds):\n\n```typescript\n// app/api/my-endpoint/route.ts\nexport const dynamic = 'force-static';\nexport const revalidate = 300; // revalidate every 5 minutes\n\nexport async function GET() {\n  const data = await getSharedData();\n  return Response.json(data);\n}\n```\n\n*(Documented in the Next.js `route.js` API reference under \"Revalidating Cached Data\".)*\n\n---\n\n## 3. Important: verify the handler is actually static-safe\n\nBefore adding `export const dynamic = 'force-static'`, inspect what your handler actually does:\n\n- If your handler reads the incoming `Request` object (e.g. `request.nextUrl.searchParams`), or uses `cookies()` or `headers()` from `next/headers`, **it is intrinsically request-dependent**.\n- Setting `force-static` on a handler that reads cookies or search params will cause Next.js to provide empty or default values at build time, which will silently produce incorrect responses for different users.\n- If the endpoint *is* user-specific or real-time, the Next.js 15 uncached default is actually the correct behavior for your application, and you should leave it dynamic.\n\n---\n\n## 4. Don't confuse Route Handler caching with `fetch` caching\n\nNext.js 15 made two separate breaking caching changes at the same time. Developers commonly confuse them, but they operate at different layers:\n\n| Layer | What it governs | Next.js 14 Default | Next.js 15 Default | How to configure in Next 15 |\n|---|---|---|---|---|\n| **Route Handler (`GET`)** | The HTTP endpoint itself | Cached (static) | **Uncached (dynamic)** | Route file: `export const dynamic = 'force-static'` |\n| **`fetch()` requests** | Outgoing HTTP calls *inside* components or handlers | Cached (`force-cache`) | **Uncached (`no-store`)** | Per-fetch: `{ cache: 'force-cache' }`, or file-level: `export const fetchCache = 'default-cache'` |\n\n- Adding `{ cache: 'force-cache' }` to a `fetch()` inside your handler will cache that individual outgoing HTTP call, but **the Route Handler endpoint itself will still execute on every request** in Next.js 15 unless you also set `export const dynamic = 'force-static'` on the route file.\n- Conversely, setting `export const dynamic = 'force-static'` makes the entire Route Handler static; its response is baked at build time.\n\n---\n\n## Official Documentation Sources Cited\n\n- **Next.js 15 Release Blog — \"Caching Semantics\":**  \n  https://nextjs.org/blog/next-15#caching-semantics\n- **Next.js 15 Upgrade Guide — \"Route Handlers\":**  \n  https://nextjs.org/docs/app/building-your-application/upgrading/version-15#route-handlers\n- **Next.js `route.js` API Reference — Version History & Caching:**  \n  https://nextjs.org/docs/app/api-reference/file-conventions/route#version-history\n- **Next.js App Router Caching Guide (Previous Model):**  \n  https://nextjs.org/docs/app/building-your-application/caching",
+      "command": "export OPENCODE_ENABLE_EXA=1; time nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1b8340effe3IYR3dCcRNglJA",
+        "workingDirectory": "~/coding-agent-workspaces/WS-02-glm-opencode-run1",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 65.546,
+        "userSeconds": 28.541,
+        "systemSeconds": 9.345,
+        "cost": {
+          "amount": 0.0146517,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 169821,
+          "input": 77128,
+          "output": 1923,
+          "reasoning": 4242,
+          "cachedInput": 86528,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 79051,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "OpenCode webfetch / direct documentation retrieval (webfetch: 7)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w02_nextjs_caching.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly explains Next.js 14 and 15 Route Handler caching behavior, provides the documented export const dynamic = 'force-static' configuration, clearly distinguishes Route Handler caching from fetch request caching, cites official Next.js documentation, provides clear implementation caveats, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T06:51:48+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly explains the Next.js 14 vs 15 Route Handler caching defaults, provides dynamic = 'force-static', cites official Next.js sources, distinguishes Route Handler caching from fetch caching, provides clear implementation guidance and caveats, and demonstrates active search execution.",
+        "checks": {
+          "version_14_behavior": true,
+          "version_15_behavior": true,
+          "force_static_configuration": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "route_handler_vs_fetch_cache": true,
+          "implementation_guidance": true,
+          "caveats_and_scope": true,
+          "search_execution_evidence": true,
+          "no_memory_only_answer": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
+      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 2",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
+        "OpenCode performed 7 direct webfetch calls to official Next.js documentation and blog releases.",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 6 execution steps."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-web-search-03",
+      "taskId": "web-search-WS-03",
+      "taskName": "WS-03 — Previously-Owned Clean Vehicle Credit eligibility",
+      "categoryId": "web-search",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "A buyer in Texas plans to purchase a used electric vehicle from a dealer on October 15, 2026. They have not signed a binding purchase contract or made a payment for this vehicle on or before September 30, 2025.\n\nThe buyer found a 2024 article saying eligible used electric vehicle purchases may qualify for a federal clean vehicle tax credit of up to $4,000.\n\nUse the native web_search tool to research current, official IRS sources and determine whether this planned purchase can qualify for the federal Previously-Owned Clean Vehicle Credit.\n\nYour answer must:\n1. State the conclusion for this buyer and identify the relevant cutoff date.\n2. Explain why the 2024 article may have been accurate when published but may no longer apply to this purchase.\n3. Explain what the IRS means by a vehicle being \"acquired.\" Distinguish acquisition from taking possession of the vehicle, and explain the relevance of a binding written contract and payment made by the cutoff date.\n4. Explain whether taking possession after the cutoff could ever be consistent with eligibility when the vehicle was acquired by the deadline.\n5. Cite official IRS URLs for the material claims.\n\nDo not rely on memory alone. Use the official source evidence, distinguish the general rule from its exception, and state any limitations in what you can verify. Do not treat this as individualized tax advice.\nDo not use shell commands such as curl or wget as a substitute for the native web_search tool.",
+      "responseMarkdown": "## Research Summary — Previously‑Owned Clean Vehicle Credit (IRC § 25E)\n\nI researched this using official IRS sources via live web search and direct retrieval on October 15, 2026. Below is the structured analysis addressing all five required points.\n\n---\n\n### 1. Conclusion for this buyer and the relevant cutoff date\n\n- **Conclusion:** **The planned purchase cannot qualify for the Previously‑Owned Clean Vehicle Credit.** The buyer will not be able to claim the federal tax credit of up to $4,000.\n- **Relevant cutoff date:** **September 30, 2025.**\n- **Controlling statutory rule:** Under Public Law 119‑21 (commonly referred to by the IRS as the *One, Big, Beautiful Bill* or OBBB, enacted July 4, 2025), the Previously‑Owned Clean Vehicle Credit under Internal Revenue Code Section 25E was terminated for vehicles acquired after September 30, 2025. The official IRS guidance states unequivocally:\n  > *\"Previously‑Owned Clean Vehicle Credit is not available for vehicles acquired after Sept. 30, 2025.\"*\n  > — **IRS, Used Clean Vehicle Credit (Page Last Reviewed: Oct. 1, 2025 / Current as of Oct. 2026)**\n\nBecause the buyer plans to purchase the vehicle on October 15, 2026, and entered into no binding contract and made no payment on or before September 30, 2025, their acquisition occurs more than a year after the statutory sunset.\n\n---\n\n### 2. Why the 2024 article was accurate when published, but no longer applies\n\n- **Why it was accurate in 2024:** Under the Inflation Reduction Act of 2022 (Public Law 117‑169), Congress added Section 25E to the Internal Revenue Code effective January 1, 2023. Under that statute, eligible previously‑owned clean vehicles purchased from a licensed dealer could qualify for a tax credit equal to 30% of the sale price, up to a maximum of $4,000. Under the 2022 law, the credit was originally scheduled to remain available for vehicles acquired through **December 31, 2032**. A 2024 article stating that eligible purchases could qualify for up to $4,000 was completely accurate under the law in effect at that time.\n- **Why it no longer applies:** On July 4, 2025, Congress enacted Public Law 119‑21, which moved the sunset date forward by more than seven years — from December 31, 2032, to **September 30, 2025**. Any tax information published in 2024 reflected the 2022 statutory timeline, which has since been superseded by the 2025 legislation.\n\n---\n\n### 3. What \"acquired\" means — and how it differs from taking possession\n\nThe IRS gives an explicit definition, and it does **not** turn on delivery or possession:\n\n- **The IRS definition of \"acquired\":**\n  > *\"For purposes of the clean vehicle credit, a vehicle is treated as acquired as of the date a written binding contract is entered into and a payment has been made (which includes a nominal down payment or a vehicle trade-in).\"*\n  > — **IRS Fact Sheet FS‑2025‑05 / Form 8936 Instructions**\n- **Possession = \"placed in service,\" a separate requirement:**  \n  The IRS explicitly distinguishes acquisition from taking possession. Taking possession is the event that determines when a vehicle is **\"placed in service\"** (the date used on Form 8936 to determine the tax year for claiming the credit):\n  > *\"A vehicle is placed in service when you take possession of the vehicle.\"*\n  > — **IRS, Used Clean Vehicle Credit / Dealer Requirements**\n- **Why the contract + payment by the cutoff matters:**  \n  The statute specifies that the credit is not allowed for vehicles *acquired* after September 30, 2025. Therefore, the controlling legal event for the deadline is **not** when the buyer drives the car off the lot, but whether the taxpayer satisfied both parts of the acquisition test (written binding contract + payment) on or before September 30, 2025.\n\nBecause this buyer plans to initiate their transaction on October 15, 2026, both their contract and their payment will occur after the cutoff date, precluding acquisition under the statutory definition.\n\n---\n\n### 4. Could taking possession after the cutoff ever be consistent with eligibility?\n\n**Yes, but only under the specific exception for vehicles acquired on or before the deadline.**\n\nThe IRS guidance accommodates situations where a taxpayer entered into a deal before the sunset but took delivery afterwards:\n\n- **The exception (timely acquisition, late delivery):**  \n  > *\"If a taxpayer acquires a vehicle by having a written binding contract in place and a payment made on or before September 30, 2025, the taxpayer may claim the credit when they place the vehicle in service, even if the vehicle is placed in service after September 30, 2025.\"*\n  > — **IRS, Clean vehicle credit seller or dealer requirements**\n- **The general rule (late acquisition):**  \n  A vehicle acquired after September 30, 2025 gets no credit — possession timing cannot rescue it.\n- **Application to this buyer:**  \n  This buyer does **not** qualify for the exception. They did not have a written binding contract or payment on or before September 30, 2025. They are acquiring the vehicle on October 15, 2026, which falls under the general rule of ineligibility.\n\n---\n\n### 5. Official IRS Sources Cited\n\n| Source Title | Official IRS URL | Material Claim Supported |\n|---|---|---|\n| **Used Clean Vehicle Credit** | https://www.irs.gov/credits-deductions/used-clean-vehicle-credit | § 25E credit not allowed for vehicles acquired after Sept. 30, 2025; \"acquired\" = binding written contract + payment; \"placed in service\" = taking possession; max credit $4,000 / 30%. |\n| **Clean vehicle credit seller or dealer requirements** | https://www.irs.gov/credits-deductions/clean-vehicle-credit-seller-or-dealer-requirements | Confirms termination date of Sept. 30, 2025 for §§ 25E, 30D, and 45W; documents the transition rule allowing credit when placed in service after Sept. 30, 2025 if acquired on or before that date; details time-of-sale report requirements via IRS Energy Credits Online. |\n| **Clean vehicle tax credits (Overview)** | https://www.irs.gov/clean-vehicle-tax-credits | Overview of changes under Public Law 119‑21 (OBBB); explains the sunset of §§ 25E, 30D, 30C, and 45W. |\n| **IRS Fact Sheet FS‑2025‑05 / Clean Vehicle FAQs** | https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-known-as-the-one-big-beautiful-bill-obbb | Q&A guidance interpreting the OBBB modifications; explicitly defines \"acquired\" as written binding contract plus payment (including nominal down payment or trade-in). |\n| **Instructions for Form 8936 (Clean Vehicle Credits)** | https://www.irs.gov/instructions/i8936 | Statutory definitions of acquisition date vs. placed-in-service date; reporting mechanics. |\n\n---\n\n### Limitations and Caveats\n\n- **Authority of guidance:** The primary authoritative text cited is official IRS published guidance interpreting Public Law 119‑21. Specific state-level incentives in Texas (such as the Texas Commission on Environmental Quality light-duty motor vehicle purchase grant) operate under state law independently of the federal IRC § 25E credit, but do not alter this federal conclusion.\n- **General research:** This is general research based on published IRS guidance, **not individualized tax advice**; the buyer should confirm specifics with a qualified tax professional.",
+      "command": "export OPENCODE_ENABLE_EXA=1; time nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec1b280b9ffeZNuWzs7sRKSdEr",
+        "workingDirectory": "~/coding-agent-workspaces/WS-03-ev-credit",
+        "provider": "nebiusrelay",
+        "reasoningEffort": "none",
+        "wallClockSeconds": 128.52,
+        "userSeconds": 65.832,
+        "systemSeconds": 22.619,
+        "cost": {
+          "amount": 0.0203848,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 135738,
+          "input": 72035,
+          "output": 3377,
+          "reasoning": 15782,
+          "cachedInput": 44544,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 75412,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "warnings": [],
+      "searchBackend": "Exa web search and webfetch via OpenCode (OPENCODE_ENABLE_EXA=1; websearch: 6, webfetch: 2)",
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "Supplied OpenCode execution notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/web-search/w03_clean_vehicle_credit.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The response correctly concludes that the buyer's purchase is ineligible under IRC section 25E, identifies the September 30, 2025 acquisition cutoff, explains the historical $4,000 rule and legislative termination, accurately defines acquisition as requiring a binding written contract plus payment, distinguishes acquisition from possession/placed-in-service, correctly applies the late-possession transition rule, cites authoritative IRS sources, includes appropriate general research disclaimers, and demonstrates verified web search execution.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T07:12:16+00:00",
+        "evaluationCriteria": "Evaluate whether the response correctly identifies the buyer as ineligible for the Previously-Owned Clean Vehicle Credit, cites the September 30, 2025 cutoff date, contextualizes the historical $4,000 credit, defines acquisition through contract-plus-payment, distinguishes acquisition from possession/placed-in-service, explains the late-possession transition exception, cites official IRS sources, provides tax disclaimers, and demonstrates verified web search execution.",
+        "checks": {
+          "buyer_conclusion": true,
+          "cutoff_date": true,
+          "historical_4000_credit": true,
+          "acquisition_definition": true,
+          "possession_vs_acquisition": true,
+          "late_possession_exception": true,
+          "official_sources": true,
+          "source_claim_alignment": true,
+          "search_execution_evidence": true,
+          "limitations_and_advice_scope": true
+        }
+      },
+      "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
+      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 3",
+      "dataQualityNotes": [
+        "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
+        "Exa search was active with 6 websearch queries and 2 direct IRS page fetches.",
+        "Tokens and costs represent the sum of OpenCode step_finish records across 4 execution steps."
       ]
     }
   ]
