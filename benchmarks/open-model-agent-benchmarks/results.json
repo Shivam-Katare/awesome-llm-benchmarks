@@ -3,9 +3,9 @@
   "dataset": {
     "id": "nebius-open-model-benchmarks",
     "name": "Nebius Open-Model Benchmarks",
-    "description": "Benchmark runs executed using Codex, Claude Code, and OpenCode with DeepSeek-V4.1-Flash and GLM-5.3-Flash across Reasoning and Tool Use tasks. Includes recorded prompts, model outputs, execution times, token usage, costs, and run outcomes where available. Cost values retain their reporting source and may not be directly comparable across harnesses. Original Codex statuses reflect the supplied notes; newly imported Claude Code and OpenCode Reasoning statuses were assessed against the expected outcomes and evaluation criteria in this dataset. Missing or ambiguous details are recorded as such.",
-    "lastImportedFromNotes": "2026-10-16",
-    "recordCount": 37,
+    "description": "Benchmark runs executed using Codex, Claude Code, and OpenCode with DeepSeek-V4.1-Flash and GLM-5.3-Flash across Reasoning, Tool Use, Web Search, and Coding tasks. Includes recorded prompts, model outputs, execution times, token usage, costs, and run outcomes where available. Cost values retain their reporting source and may not be directly comparable across harnesses. Original Codex statuses reflect the supplied notes; newly imported Claude Code and OpenCode Reasoning statuses were assessed against the expected outcomes and evaluation criteria in this dataset. Missing or ambiguous details are recorded as such.",
+    "lastImportedFromNotes": "2026-10-25",
+    "recordCount": 84,
     "categoriesIncluded": [
       "reasoning",
       "tool-use",
@@ -56,14 +56,12 @@
     {
       "id": "claude-code",
       "name": "Claude Code",
-      "version": null,
-      "versionStatus": "not recorded in supplied notes"
+      "version": "2.1.296"
     },
     {
       "id": "opencode",
       "name": "OpenCode",
-      "version": null,
-      "versionStatus": "not recorded in supplied notes"
+      "version": "1.19.0"
     }
   ],
   "runs": [
@@ -464,7 +462,7 @@
         "statusMatchesRecordedStatus": true,
         "checkedAt": "2026-10-16T06:08:29+00:00"
       },
-      "sourceReference": "Pasted text(20261014-034933).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-01",
         "title": "Constraint scheduling",
@@ -543,7 +541,7 @@
         "arithmeticCheckStatus": "fail",
         "withinTolerance": false
       },
-      "sourceReference": "Pasted text(20261014-034933).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-02",
         "title": "Conditional probability",
@@ -643,7 +641,7 @@
           }
         }
       },
-      "sourceReference": "Pasted text(20261014-034933).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-03",
         "title": "Rule precedence and exceptions",
@@ -725,7 +723,7 @@
         "withinBudget": true,
         "optimalCombination": true
       },
-      "sourceReference": "Pasted text(20261014-034933).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-04",
         "title": "Discrete optimization",
@@ -777,7 +775,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text(20261014-034933).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-04 (source label; likely mismatch)",
         "title": "Logical consistency and contradiction",
@@ -834,7 +832,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Codex execution logs"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 29,197, but the cost line reports 45,492 input and 260 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 29197, but relay input + output counters sum to 45752. Both source values are preserved."
@@ -887,7 +885,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Codex execution logs"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 30,319, but the cost line reports 46,879 input and 154 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 30319, but relay input + output counters sum to 47033. Both source values are preserved."
@@ -1068,7 +1066,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 46,561, but the cost line reports 185,995 input and 1,035 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 46561, but relay input + output counters sum to 187030. Both source values are preserved."
@@ -1124,7 +1122,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 67,760, but the cost line reports 233,608 input and 995 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 67760, but relay input + output counters sum to 234603. Both source values are preserved."
@@ -1180,7 +1178,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 38,586, but the cost line reports 75,348 input and 821 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 38586, but relay input + output counters sum to 76169. Both source values are preserved."
@@ -1233,7 +1231,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "original execution logs"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 23,568, but the cost line reports 41,320 input and 466 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 23568, but relay input + output counters sum to 41786. Both source values are preserved."
@@ -1286,7 +1284,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 41,111, but the cost line reports 65,941 input and 456 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 41111, but relay input + output counters sum to 66397. Both source values are preserved."
@@ -1467,7 +1465,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 53,065, but the cost line reports 229,518 input and 1,977 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 53065, but relay input + output counters sum to 231495. Both source values are preserved."
@@ -1523,7 +1521,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 54,372, but the cost line reports 233,261 input and 2,445 output tokens. The values are preserved separately.",
         "Source token metrics disagree: 'tokens used' reports 54372, but relay input + output counters sum to 235706. Both source values are preserved."
@@ -1579,7 +1577,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Notion notes"
       },
-      "sourceReference": "Pasted text (2)(1).txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The source reports “tokens used” as 65,826, but the cost line reports 179,310 input and 2,422 output tokens. The values are preserved separately.",
         "The source notes include the comment “but couldn’t able to figure out the resource id”, but the pasted run output subsequently identifies production-analytics-db as RES-901. Recorded Pass status is preserved; review the note if it referred to this exact run.",
@@ -1650,7 +1648,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The recorded answer cites official source URLs. The supplied Codex excerpt does not include the detailed Tavily query/result trace."
@@ -1724,7 +1722,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The supplied notes explicitly mark this run provisional (18/20) and say not to finalize it as a valid Web Search run yet.",
@@ -1800,7 +1798,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The recorded answer cites official IRS URLs and explains the acquisition cutoff. The supplied Codex excerpt does not include detailed Tavily query/result trace."
@@ -1870,7 +1868,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The recorded answer cites official source URLs. The supplied Codex excerpt does not include the detailed Tavily query/result trace."
@@ -1941,7 +1939,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The supplied notes mark the response PASS. The excerpt does not include a complete native web-search trace, so source retrieval cannot be independently audited from this result object alone."
@@ -2012,7 +2010,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "Supplied Codex notes: Pasted text(20261025-024724).txt; raw execution log not committed",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run details and response were imported from supplied execution notes; raw harness log is not committed to this repository.",
         "The recorded answer cites official IRS URLs and explains the acquisition cutoff. The supplied Codex excerpt does not include detailed Tavily query/result trace."
@@ -2081,7 +2079,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "codexresult.txt (Section: ## GLM 5.3 Flash -> - Task 1)",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run transcript and results imported from codexresult.txt.",
         "Independent test suite verified proper rejection of conflicting idempotency requests before gateway calls, equivalent decimal amounts, independent keys, and gateway failure isolation."
@@ -2150,7 +2148,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "codexresult.txt (Section: ## DeepSeek-V4.1-Flash -> - Task 1)",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run transcript and results imported from codexresult.txt.",
         "DeepSeek resolved C-01 in 54.4 seconds using a frozen dataclass request cache, passing all 8 independent public and private tests."
@@ -2219,12 +2217,11 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "C-02 GLM Codex run summary; original transcript and metrics need confirmation",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The local test count of 25/25 is reported in prior context; the original Codex transcript was not available to confirm exact test names and output.",
         "Session ID, execution paths, token usage, runtime, cost, and tool names are unavailable and intentionally left blank or null.",
-        "Independent public/private evaluation is unverified. Do not interpret recordedStatus pass as an independently verified benchmark pass.",
-        "Replace missing metadata using results/C-02/glm-codex-run1.log and its corresponding evaluation JSON if available."
+        "Independent public/private evaluation is unverified. Do not interpret recordedStatus pass as an independently verified benchmark pass."
       ]
     },
     {
@@ -2290,12 +2287,11 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "C-02 DeepSeek Codex run summary; original transcript and metrics need confirmation",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The local test count of 30/30 is reported in prior context; the original Codex transcript was not available to confirm exact test names and output.",
         "Session ID, execution paths, token usage, runtime, cost, and tool names are unavailable and intentionally left blank or null.",
-        "Independent public/private evaluation is unverified. Do not interpret recordedStatus pass as an independently verified benchmark pass.",
-        "Replace missing metadata using results/C-02/deepseek-codex-run1.log and its corresponding evaluation JSON if available."
+        "Independent public/private evaluation is unverified. Do not interpret recordedStatus pass as an independently verified benchmark pass."
       ]
     },
     {
@@ -2398,7 +2394,7 @@
           }
         }
       },
-      "sourceReference": "codexresult.txt (Section: ## GLM 5.3 Flash -> - Task 3)",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run transcript and evaluation imported from codexresult.txt.",
         "Passed canonical evaluation: 4 public tests + 8 private regression tests (including boundary ties, determinism, category filtering, and malformed cursor validation)."
@@ -2504,7 +2500,7 @@
           }
         }
       },
-      "sourceReference": "codexresult.txt (Section: ## DeepSeek-V4.1-Flash -> - Task 3)",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run transcript and results imported from codexresult.txt.",
         "DeepSeek implemented composite JSON cursor encoding (updated_at + id) with strict tuple comparison, resolving timestamp boundary bugs and adding 14 regression tests."
@@ -2577,7 +2573,7 @@
         "statusMatchesRecordedStatus": true,
         "checkedAt": "2026-10-16T06:08:29+00:00"
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-01",
         "title": "Constraint scheduling",
@@ -2649,7 +2645,7 @@
         "arithmeticCheckStatus": "pass",
         "withinTolerance": true
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-02",
         "title": "Conditional probability",
@@ -2746,7 +2742,7 @@
           }
         }
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-03",
         "title": "Rule precedence and exceptions",
@@ -2832,7 +2828,7 @@
         "withinBudget": true,
         "optimalCombination": true
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-04",
         "title": "Discrete optimization",
@@ -2885,7 +2881,7 @@
         "status": "assessed_against_supplied_criteria",
         "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL."
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-05 (source notes contain a likely R-04 label mismatch)",
         "title": "Logical consistency and contradiction",
@@ -2962,7 +2958,7 @@
         "statusMatchesRecordedStatus": true,
         "checkedAt": "2026-10-16T06:08:29+00:00"
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-01",
         "title": "Constraint scheduling",
@@ -3034,7 +3030,7 @@
         "arithmeticCheckStatus": "pass",
         "withinTolerance": true
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-02",
         "title": "Conditional probability",
@@ -3131,7 +3127,7 @@
           }
         }
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-03",
         "title": "Rule precedence and exceptions",
@@ -3218,7 +3214,7 @@
         "withinBudget": true,
         "optimalCombination": false
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-04",
         "title": "Discrete optimization",
@@ -3271,7 +3267,7 @@
         "status": "assessed_against_supplied_criteria",
         "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL."
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-05 (source notes contain a likely R-04 label mismatch)",
         "title": "Logical consistency and contradiction",
@@ -3324,7 +3320,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Claude Code execution logs"
       },
-      "sourceReference": "tool-use/T-01-travel-booking/runs/deepseek-claude-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied run used text output, which did not preserve a structured per-tool-call trace; toolNamesUsed is empty rather than inferred.",
         "The response notes that the booking departure (2026-10-12) and listed alternatives (2026-10-13) were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
@@ -3378,7 +3374,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Claude Code execution logs"
       },
-      "sourceReference": "tool-use/T-02-customer-account/runs/deepseek-claude-run1-stream.jsonl",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied setup log reset Priya's tier from gold to silver before execution; the MCP update returned success for silver to gold.",
         "Claude Code JSONL metadata reports total_cost_usd=0.291985 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
@@ -3560,7 +3556,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "tool-use/T-03-incident-remediation/runs/deepseek-claude-run1-stream.jsonl",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied setup log reset T-03 to the saved baseline before the run.",
         "The trace records rollback of DEP-INV-455 only and subsequent health/dependency checks reporting recovery.",
@@ -3611,7 +3607,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Claude Code execution logs"
       },
-      "sourceReference": "tool-use/T-01-travel-booking/runs/glm-claude-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied run used text output, which did not preserve a structured per-tool-call trace; toolNamesUsed is empty rather than inferred.",
         "The response notes that the booking departure (2026-10-12) and listed alternatives (2026-10-13) were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
@@ -3665,7 +3661,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied Claude Code execution logs"
       },
-      "sourceReference": "tool-use/T-02-customer-account/runs/glm-claude-run1-stream.jsonl",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied setup log reset Priya's tier from gold to silver before execution; the MCP update returned success for silver to gold.",
         "Claude Code JSONL metadata reports total_cost_usd=0.271775 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
@@ -3847,7 +3843,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "tool-use/T-03-incident-remediation/runs/glm-claude-run1-stream.jsonl",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The supplied setup log reset T-03 to the saved baseline before the run.",
         "The trace records rollback of DEP-INV-455 only and subsequent health/dependency checks reporting recovery.",
@@ -3923,7 +3919,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 1",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
         "Native Claude web search was active (webSearchRequests: 7).",
@@ -3999,7 +3995,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 2",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
         "Native Claude web search was active (webSearchRequests: 0).",
@@ -4075,7 +4071,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "claudecoderesult.txt: DeepSeek V4.1 Flash Task 3",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with deepseek-ai/DeepSeek-V4.1-Flash.",
         "Native Claude web search was active (webSearchRequests: 2).",
@@ -4150,7 +4146,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 1",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
         "Native Claude web search was active (webSearchRequests: 2).",
@@ -4226,7 +4222,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 2",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
         "Native Claude web search was active (webSearchRequests: 0).",
@@ -4302,7 +4298,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "claudecoderesult.txt: GLM 5.3 Flash Task 3",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay NConnect using Claude Code with zai-org/GLM-5.3-Flash.",
         "Native Claude web search was active (webSearchRequests: 2).",
@@ -4375,7 +4371,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "results/C-01/deepseek-claude.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "realSeconds uses Claude Code JSON duration_ms converted to seconds; shell time real/user/system output was not captured.",
         "NConnect reported $0.0351. Claude Code JSON reported $0.598515 with an unknown cost basis; the two values are kept separate.",
@@ -4450,7 +4446,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "results/C-02/deepseek-claude-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The final local output reports 29 tests passing, while a pasted summary reports 30/30; the raw final test output is used here.",
         "NConnect reported $0.1850. Claude Code JSON reported $3.28896 with an unknown cost basis; the values are kept separate.",
@@ -4560,7 +4556,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-03.json",
-      "sourceReference": "results/C-03/deepseek-claude-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "NConnect reported $0.0521. Claude Code JSON reported $0.89378 with an unknown cost basis; the values are kept separate.",
         "NConnect reported 135,936 cached input tokens, whereas Claude Code JSON reported zero cache-read tokens."
@@ -4632,7 +4628,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "results/C-01/glm-claude.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "realSeconds is the Claude Code JSON duration_ms converted to seconds; shell time real/user/system output was not captured.",
         "NConnect reported $0.0141. Claude Code JSON reported $0.50016 with an unknown cost basis; the values are kept separate.",
@@ -4709,7 +4705,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "results/C-02/glm-claude-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "NConnect reported $0.0225. Claude Code JSON reported $0.802675 with an unknown cost basis; the values are kept separate.",
         "NConnect reported 73,216 cached input tokens, whereas Claude Code JSON reported zero cache-read tokens.",
@@ -4819,7 +4815,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-03.json",
-      "sourceReference": "results/C-03/glm-claude-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "NConnect reported $0.0189. Claude Code JSON reported $0.65086 with an unknown cost basis; the values are kept separate.",
         "NConnect reported 28,160 cached input tokens, whereas Claude Code JSON reported zero cache-read tokens."
@@ -4903,7 +4899,7 @@
         "statusMatchesRecordedStatus": true,
         "checkedAt": "2026-10-16T06:08:29+00:00"
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-01",
         "title": "Constraint scheduling",
@@ -5006,7 +5002,7 @@
         "arithmeticCheckStatus": "pass",
         "withinTolerance": true
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-02",
         "title": "Conditional probability",
@@ -5120,7 +5116,7 @@
           }
         }
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-03",
         "title": "Rule precedence and exceptions",
@@ -5211,7 +5207,7 @@
         "statusMatchesRecordedStatus": true,
         "checkedAt": "2026-10-16T06:08:29+00:00"
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-01",
         "title": "Constraint scheduling",
@@ -5306,7 +5302,7 @@
         "arithmeticCheckStatus": "pass",
         "withinTolerance": true
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-02",
         "title": "Conditional probability",
@@ -5420,7 +5416,7 @@
           }
         }
       },
-      "sourceReference": "Pasted text(20261016-051334).txt",
+      "sourceReference": null,
       "taskMetadata": {
         "sourceTaskCode": "R-03",
         "title": "Rule precedence and exceptions",
@@ -5534,7 +5530,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied OpenCode execution logs"
       },
-      "sourceReference": "tool-use/T-01-travel-booking/runs/deepseek-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Structured MCP tool calls and their returned data are preserved from the OpenCode JSON log.",
         "The booking departure and both offered alternatives were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
@@ -5586,7 +5582,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied OpenCode execution logs"
       },
-      "sourceReference": "tool-use/T-02-customer-account/runs/deepseek-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The setup log reset Priya's tier to silver before the run.",
         "The tool trace shows successful customer lookup, eligibility check, and silver-to-gold update. The update result reported success and the new tier as gold.",
@@ -5767,7 +5763,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "tool-use/T-03-incident-remediation/runs/deepseek-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The setup log reset T-03 to the saved baseline before execution.",
         "Several exploratory dependency-health calls for nonexistent dependency relationships returned errors; the model subsequently identified checkout → inventory as degraded, rolled back DEP-INV-455, and verified recovery.",
@@ -5876,7 +5872,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied OpenCode execution logs"
       },
-      "sourceReference": "tool-use/T-01-travel-booking/runs/glm-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Structured MCP tool calls and their returned data are preserved from the OpenCode JSON log.",
         "The booking departure and both offered alternatives were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
@@ -5928,7 +5924,7 @@
         "status": "not_independently_verified",
         "recordedStatusSource": "supplied OpenCode execution logs"
       },
-      "sourceReference": "tool-use/T-02-customer-account/runs/glm-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The setup log reset Priya's tier to silver before execution.",
         "The tool trace shows successful lookup, eligibility inspection, tier update, and a subsequent account read confirming current_tier as gold.",
@@ -6108,7 +6104,7 @@
         "toolTracePresent": true,
         "toolTraceComplete": false
       },
-      "sourceReference": "tool-use/T-03-incident-remediation/runs/glm-opencode-run1.txt",
+      "sourceReference": null,
       "dataQualityNotes": [
         "The setup log reset T-03 to the saved baseline before execution.",
         "OpenCode used its internal todowrite tool for task tracking; it is not an MCP server tool and is excluded from toolNamesUsed.",
@@ -6179,7 +6175,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 1",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
         "OpenCode session utilized direct URL retrieval (webfetch) and archive fallback to verify FDA and USDA guidance.",
@@ -6250,7 +6246,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 2",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
         "Exa search was enabled (OPENCODE_ENABLE_EXA=1) with 4 websearch and 4 webfetch calls.",
@@ -6321,7 +6317,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "opencoderesult.txt: DeepSeek V4.1 Flash Task 3",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with deepseek-ai/DeepSeek-V4.1-Flash.",
         "Exa websearch was active (2 websearch calls returning 12 unique official IRS URLs).",
@@ -6391,7 +6387,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-01.json",
-      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 1",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
         "Exa search and direct webfetch were active (9 websearch and 9 webfetch calls).",
@@ -6462,7 +6458,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-02.json",
-      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 2",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
         "OpenCode performed 7 direct webfetch calls to official Next.js documentation and blog releases.",
@@ -6533,7 +6529,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/web-search/WS-03.json",
-      "sourceReference": "opencoderesult.txt: GLM 5.3 Flash Task 3",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Run executed via Nebius Relay using OpenCode with zai-org/GLM-5.3-Flash.",
         "Exa search was active with 6 websearch queries and 2 direct IRS page fetches.",
@@ -6603,7 +6599,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "results/C-01/deepseek-opencode.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Token totals and cost are derived from the sum of the logged OpenCode step records; no aggregate session footer was available.",
         "OpenCode completionTokens includes the logged output and reasoning tokens to preserve the Codex-compatible totalTokens structure.",
@@ -6678,7 +6674,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "results/C-02/deepseek-opencode-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Token totals and cost are derived from the sum of the logged OpenCode step records.",
         "OpenCode completionTokens includes the logged output and reasoning tokens to preserve the Codex-compatible totalTokens structure.",
@@ -6785,7 +6781,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-03.json",
-      "sourceReference": "results/C-03/deepseek-opencode-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Token totals and cost are derived from the sum of the logged OpenCode step records.",
         "OpenCode completionTokens includes the logged output and reasoning tokens to preserve the Codex-compatible totalTokens structure.",
@@ -6852,7 +6848,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-01.json",
-      "sourceReference": "Pasted text(20261025-114715).txt (GLM Task 1: timeout failed)",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Runtime, token usage, cost, session ID and test results remain null because they were not available in the supplied record."
       ]
@@ -6924,7 +6920,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-02.json",
-      "sourceReference": "results/C-02/glm-opencode-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Token totals and cost are derived from the sum of the logged OpenCode step records.",
         "OpenCode completionTokens includes the logged output and reasoning tokens to preserve the Codex-compatible totalTokens structure.",
@@ -7032,7 +7028,7 @@
         }
       },
       "taskReference": "benchmarks/open-model-agent-benchmarks/tasks/coding/C-03.json",
-      "sourceReference": "results/C-03/glm-opencode-run1.log",
+      "sourceReference": null,
       "dataQualityNotes": [
         "Token totals and cost are derived from the sum of the logged OpenCode step records.",
         "OpenCode completionTokens includes the logged output and reasoning tokens to preserve the Codex-compatible totalTokens structure."
