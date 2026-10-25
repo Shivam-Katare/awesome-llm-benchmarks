@@ -314,8 +314,38 @@
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
       ],
       "evaluation": {
-        "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Notion notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/reasoning/r04_discrete_optimization.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The combination meets the budget and achieves the maximum gain of 28; reported totals match.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-22T06:10:45+00:00",
+        "expectedOutcome": {
+          "items": [
+            "A",
+            "C"
+          ],
+          "totalCost": 10,
+          "totalGain": 28
+        },
+        "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
+        "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
+        "budget": 10.0,
+        "selectedItems": [
+          "A",
+          "C"
+        ],
+        "calculatedTotalCost": 10.0,
+        "reportedTotalCost": 10.0,
+        "calculatedTotalGain": 28.0,
+        "reportedTotalGain": 28.0,
+        "calculatedOptimalGain": 28.0,
+        "withinBudget": true,
+        "optimalCombination": true
       }
     },
     {
@@ -652,8 +682,38 @@
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
       ],
       "evaluation": {
-        "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Notion notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/reasoning/r04_discrete_optimization.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The combination meets the budget and achieves the maximum gain of 28; reported totals match.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-22T06:10:45+00:00",
+        "expectedOutcome": {
+          "items": [
+            "A",
+            "C"
+          ],
+          "totalCost": 10,
+          "totalGain": 28
+        },
+        "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
+        "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
+        "budget": 10.0,
+        "selectedItems": [
+          "A",
+          "C"
+        ],
+        "calculatedTotalCost": 10.0,
+        "reportedTotalCost": 10.0,
+        "calculatedTotalGain": 28.0,
+        "reportedTotalGain": 28.0,
+        "calculatedOptimalGain": 28.0,
+        "withinBudget": true,
+        "optimalCombination": true
       },
       "sourceReference": "Pasted text(20261014-034933).txt",
       "taskMetadata": {
@@ -762,7 +822,7 @@
       ],
       "evaluation": {
         "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "recordedStatusSource": "supplied Codex execution logs"
       },
       "sourceReference": "Pasted text (2)(1).txt",
       "dataQualityNotes": [
@@ -815,7 +875,7 @@
       ],
       "evaluation": {
         "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "recordedStatusSource": "supplied Codex execution logs"
       },
       "sourceReference": "Pasted text (2)(1).txt",
       "dataQualityNotes": [
@@ -869,8 +929,134 @@
         "t03-incident-remediation/rollback_deployment"
       ],
       "evaluation": {
-        "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Notion notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_dependency_health",
+                "get_recent_deployments",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": true
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": false
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_dependency_health",
+          "get_recent_deployments",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
       },
       "sourceReference": "Pasted text (2)(1).txt",
       "dataQualityNotes": [
@@ -1035,7 +1221,7 @@
       ],
       "evaluation": {
         "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "recordedStatusSource": "original execution logs"
       },
       "sourceReference": "Pasted text (2)(1).txt",
       "dataQualityNotes": [
@@ -1142,8 +1328,134 @@
         "t03-incident-remediation/rollback_deployment"
       ],
       "evaluation": {
-        "status": "not_independently_verified",
-        "recordedStatusSource": "supplied Notion notes"
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Notion notes",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_dependency_health",
+                "get_recent_deployments",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": false
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": false
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_dependency_health",
+          "get_recent_deployments",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
       },
       "sourceReference": "Pasted text (2)(1).txt",
       "dataQualityNotes": [
@@ -1553,8 +1865,38 @@
         "Claude Code emitted [claude-code:unrecognized_model] for the routed model deepseek-ai/DeepSeek-V4.1-Flash; the run continued to a result."
       ],
       "evaluation": {
-        "status": "assessed_against_supplied_criteria",
-        "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL."
+        "status": "independently_verified",
+        "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL.",
+        "previousEvaluationStatus": "assessed_against_supplied_criteria",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/reasoning/r04_discrete_optimization.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The combination meets the budget and achieves the maximum gain of 28; reported totals match.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-22T06:10:45+00:00",
+        "expectedOutcome": {
+          "items": [
+            "A",
+            "C"
+          ],
+          "totalCost": 10,
+          "totalGain": 28
+        },
+        "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
+        "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
+        "budget": 10.0,
+        "selectedItems": [
+          "A",
+          "C"
+        ],
+        "calculatedTotalCost": 10.0,
+        "reportedTotalCost": 10.0,
+        "calculatedTotalGain": 28.0,
+        "reportedTotalGain": 28.0,
+        "calculatedOptimalGain": 28.0,
+        "withinBudget": true,
+        "optimalCombination": true
       },
       "sourceReference": "Pasted text(20261016-051334).txt",
       "taskMetadata": {
@@ -1908,8 +2250,39 @@
         "Claude Code emitted [claude-code:unrecognized_model] for the routed model zai-org/GLM-5.3-Flash; the run continued to a result."
       ],
       "evaluation": {
-        "status": "assessed_against_supplied_criteria",
-        "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL."
+        "status": "independently_verified",
+        "recordedStatusSource": "Derived from the response and task expectedOutcome/evaluationCriteria in the supplied benchmark JSON; the notes do not label all Claude Code results PASS/FAIL.",
+        "previousEvaluationStatus": "assessed_against_supplied_criteria",
+        "verifiedResult": "fail",
+        "evaluator": "evaluators/reasoning/r04_discrete_optimization.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "Calculated gain 27 is below the maximum gain 28.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-22T06:10:45+00:00",
+        "expectedOutcome": {
+          "items": [
+            "A",
+            "C"
+          ],
+          "totalCost": 10,
+          "totalGain": 28
+        },
+        "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
+        "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
+        "budget": 10.0,
+        "selectedItems": [
+          "B",
+          "D",
+          "E"
+        ],
+        "calculatedTotalCost": 10.0,
+        "reportedTotalCost": 10.0,
+        "calculatedTotalGain": 27.0,
+        "reportedTotalGain": 27.0,
+        "calculatedOptimalGain": 28.0,
+        "withinBudget": true,
+        "optimalCombination": false
       },
       "sourceReference": "Pasted text(20261016-051334).txt",
       "taskMetadata": {
@@ -1973,6 +2346,580 @@
         "evaluationCriteria": "PASS only if the answer identifies the contradiction and the minimal sufficient set {1, 2, 4, 5}, with an explanation of the implication chain.",
         "whatItMeasures": "Logical entailment, contradiction detection, and minimal unsatisfiable subsets."
       }
+    },
+    {
+      "id": "run-deepseek-claude-code-tool-use-01",
+      "taskId": "tool-use-T-01",
+      "taskName": "T-01 — Travel booking free-change eligibility",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Maya Shah (maya.shah@example.test), find her next upcoming flight. Check whether it is eligible for a free change. If it is eligible, return the available free-change options, including the departure time and fare difference. Do not modify the booking. Use the available travel-booking tools to complete the task.",
+      "responseMarkdown": "**Maya Shah — next upcoming booking is eligible for a free change.**\n\n**Booking:** BK-2041 — BOM→BLR, confirmed, departs **2026-10-12 at 09:20 (+05:30)**, policy `FREE_CHANGE`.\n\n**Eligibility:** Eligible — booking is confirmed and carries the FREE_CHANGE policy.\n\n**Available free-change options:**\n\n| Option | Departure | Fare difference |\n|--------|-----------|-----------------|\n| 1 | 2026-10-13 at 09:20 (+05:30) | ₹0 (no difference) |\n| 2 | 2026-10-13 at 18:45 (+05:30) | ₹0 (no difference) |\n\nThe booking was not modified.\n\nThe response also flagged that the current departure and both alternatives were already in the past on the run date of 2026-10-15, suggesting that the booking data may be stale.",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format text < /dev/null",
+      "execution": {
+        "sessionId": null,
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-01-travel-booking",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 11.778,
+        "userSeconds": 1.644,
+        "systemSeconds": 0.603,
+        "cost": {
+          "amount": 0.018,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 57603,
+          "input": 56836,
+          "output": 767,
+          "cachedInput": 30464,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 57603,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed DeepSeek model alias; the run completed."
+      ],
+      "toolNamesUsed": [],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs"
+      },
+      "sourceReference": "tool-use/T-01-travel-booking/runs/deepseek-claude-run1.txt",
+      "dataQualityNotes": [
+        "The supplied run used text output, which did not preserve a structured per-tool-call trace; toolNamesUsed is empty rather than inferred.",
+        "The response notes that the booking departure (2026-10-12) and listed alternatives (2026-10-13) were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
+    },
+    {
+      "id": "run-deepseek-claude-code-tool-use-02",
+      "taskId": "tool-use-T-02",
+      "taskName": "T-02 — Customer account tier upgrade",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Priya Mehta (priya.mehta@example.test), inspect her customer account. If she is eligible for a tier upgrade, upgrade her from silver to gold. If she is not eligible, do not modify the account. Use the available customer-account tools to complete the task and report the final tier.",
+      "responseMarkdown": "Done. Priya Mehta's account (CUS-201) met all upgrade requirements:\n\n- Account status: active\n- Verification: verified\n- Payment: current\n- Eligible for upgrade: true\n\nUpgraded **silver → gold**, confirmed by the tool. **Final tier: gold.**",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format stream-json < /dev/null",
+      "execution": {
+        "sessionId": "ce6219d1-3002-4875-ad06-eb16ad468489",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-02-customer-account",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 10.859,
+        "userSeconds": 1.777,
+        "systemSeconds": 0.486,
+        "cost": {
+          "amount": 0.0174,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 56785,
+          "input": 56382,
+          "output": 403,
+          "cachedInput": 30464,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 56785,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed DeepSeek model alias; the run completed."
+      ],
+      "toolNamesUsed": [
+        "t02-customer-account/search_customer",
+        "t02-customer-account/get_customer_account",
+        "t02-customer-account/update_customer_tier"
+      ],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs"
+      },
+      "sourceReference": "tool-use/T-02-customer-account/runs/deepseek-claude-run1-stream.jsonl",
+      "dataQualityNotes": [
+        "The supplied setup log reset Priya's tier from gold to silver before execution; the MCP update returned success for silver to gold.",
+        "Claude Code JSONL metadata reports total_cost_usd=0.291985 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
+    },
+    {
+      "id": "run-deepseek-claude-code-tool-use-03",
+      "taskId": "tool-use-T-03",
+      "taskName": "T-03 — Incident remediation",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "Checkout is experiencing elevated failures. Investigate the incident across Checkout, Payments, and Inventory using the available operational tools. Determine the most likely root cause using evidence from service health, dependencies, and recent deployments. If a specific deployment is confirmed as the cause and is safe to roll back, roll back only that deployment. Do not modify unrelated services. After any rollback, verify the affected services have recovered. Report the root cause, the evidence supporting it, the action taken, and the final service status.",
+      "responseMarkdown": "## Incident Report: Checkout Elevated Failures\n\n### Root Cause\n**Deployment DEP-INV-455** on the **Inventory** service (`version 2026.10.06.8`, deployed 2026-10-06T08:31, \"Reservation query optimization\").\n\nThe changes increased lock contention in the reservation query path, causing inventory request timeouts. This degraded Inventory, which cascaded through the Checkout→Inventory dependency, producing the elevated Checkout failures.\n\n### Evidence\n\n**Service health at time of investigation:**\n| Service | Status | Error rate | p95 latency |\n|---|---|---|---|\n| checkout | degraded | 8.7% | 1840 ms |\n| payments | healthy | 0.4% | 240 ms |\n| inventory | degraded | 3.1% | 1680 ms |\n\n**Dependency health:**\n- `checkout → inventory`: **degraded**, 14.2% timeouts\n- `checkout → payments`: healthy, 0.2% timeouts\n- `payments → inventory`: no dependency\n\nThe fault localized to the Checkout→Inventory path; Payments was healthy and ruled out.\n\n**Deployment inspection:**\n| Deployment | Service | root_cause_related | rollback_safe | Signal |\n|---|---|---|---|---|\n| **DEP-INV-455** | inventory | **true** | **true** | error +0.026, latency +1210 ms |\n| DEP-INV-448 | inventory | false | true | error 0, latency +5 ms |\n| DEP-CHK-301 | checkout | false | **false** | unrelated schema/logging changes |\n| DEP-PAY-501 | payments | false | true | unrelated (payments healthy) |\n\nDEP-INV-455 was the only deployment that was both root-cause-related and safe to roll back. Its evidence explicitly states: *\"Reservation query optimization increased lock contention and caused inventory request timeouts.\"* The Checkout deployment (DEP-CHK-301) was not rollback-safe and was unrelated; the Payments deployment was unrelated despite being rollback-safe.\n\n### Action Taken\nRolled back **DEP-INV-455 only** — `rollback_deployment` returned success. No unrelated services or deployments were modified.\n\n### Final Status (post-rollback)\n| Service | Status | Error rate | p95 latency |\n|---|---|---|---|\n| inventory | **healthy** | 0.4% | 230 ms |\n| checkout | **healthy** | 0.6% | 310 ms |\n| payments | healthy | 0.4% | 240 ms |\n\n- `checkout → inventory`: healthy, 0.2% timeouts\n- `checkout → payments`: healthy, 0.2% timeouts\n\nAll three services and both dependency paths are fully recovered. Checkout's error rate dropped from 8.7% to 0.6% and p95 latency from 1840 ms to 310 ms, confirming DEP-INV-455 was the root cause.",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format stream-json < /dev/null",
+      "execution": {
+        "sessionId": "636e8678-0e34-451d-9646-e3b3b78c9e00",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-03-incident-remediation",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 12.643,
+        "userSeconds": 2.313,
+        "systemSeconds": 0.534,
+        "cost": {
+          "amount": 0.0255,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 78586,
+          "input": 76477,
+          "output": 2109,
+          "cachedInput": 59648,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 78586,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed DeepSeek model alias; the run completed."
+      ],
+      "toolNamesUsed": [
+        "t03-incident-remediation/get_service_health",
+        "t03-incident-remediation/get_dependency_health",
+        "t03-incident-remediation/get_recent_deployments",
+        "t03-incident-remediation/inspect_deployment",
+        "t03-incident-remediation/rollback_deployment"
+      ],
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_dependency_health",
+                "get_recent_deployments",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": true
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": true
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_dependency_health",
+          "get_recent_deployments",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
+      },
+      "sourceReference": "tool-use/T-03-incident-remediation/runs/deepseek-claude-run1-stream.jsonl",
+      "dataQualityNotes": [
+        "The supplied setup log reset T-03 to the saved baseline before the run.",
+        "The trace records rollback of DEP-INV-455 only and subsequent health/dependency checks reporting recovery.",
+        "Claude Code JSONL metadata reports total_cost_usd=0.43511 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-tool-use-01",
+      "taskId": "tool-use-T-01",
+      "taskName": "T-01 — Travel booking free-change eligibility",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Maya Shah (maya.shah@example.test), find her next upcoming flight. Check whether it is eligible for a free change. If it is eligible, return the available free-change options, including the departure time and fare difference. Do not modify the booking. Use the available travel-booking tools to complete the task.",
+      "responseMarkdown": "Here's what I found for Maya Shah (booking BK-2041, BOM → BLR, confirmed):\n\n**Next flight:** listed departure 2026-10-12 09:20 IST (note: this date is already past as of today, 2026-10-15 — it's the only booking on file).\n\n**Eligibility:** Eligible for a free change (confirmed booking with FREE_CHANGE policy).\n\n**Available free-change options** (fare difference ₹0 — no cost for either):\n\n| Option | New Departure | Fare Difference |\n|---|---|---|\n| 1 | 2026-10-13, 09:20 IST | ₹0 |\n| 2 | 2026-10-13, 18:45 IST | ₹0 |\n\nThe booking was not modified. One thing worth flagging: both the current departure and the offered alternatives are in the past relative to today, which may indicate stale data in the booking system.",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format text < /dev/null",
+      "execution": {
+        "sessionId": null,
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-01-travel-booking",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 12.406,
+        "userSeconds": 1.601,
+        "systemSeconds": 0.48,
+        "cost": {
+          "amount": 0.0083,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 54280,
+          "input": 53883,
+          "output": 397,
+          "cachedInput": 28160,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 54280,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed GLM model alias; the run completed."
+      ],
+      "toolNamesUsed": [],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs"
+      },
+      "sourceReference": "tool-use/T-01-travel-booking/runs/glm-claude-run1.txt",
+      "dataQualityNotes": [
+        "The supplied run used text output, which did not preserve a structured per-tool-call trace; toolNamesUsed is empty rather than inferred.",
+        "The response notes that the booking departure (2026-10-12) and listed alternatives (2026-10-13) were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-tool-use-02",
+      "taskId": "tool-use-T-02",
+      "taskName": "T-02 — Customer account tier upgrade",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Priya Mehta (priya.mehta@example.test), inspect her customer account. If she is eligible for a tier upgrade, upgrade her from silver to gold. If she is not eligible, do not modify the account. Use the available customer-account tools to complete the task and report the final tier.",
+      "responseMarkdown": "Priya Mehta (CUS-201) was eligible — active, verified, payments current — so she has been upgraded. **Final tier: gold** (previously silver).",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format stream-json < /dev/null",
+      "execution": {
+        "sessionId": "0c8f0b51-3463-482c-b7ba-6bb9796cb438",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-02-customer-account",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 9.533,
+        "userSeconds": 1.554,
+        "systemSeconds": 0.406,
+        "cost": {
+          "amount": 0.0081,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 53643,
+          "input": 53465,
+          "output": 178,
+          "cachedInput": 27904,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 53643,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed GLM model alias; the run completed."
+      ],
+      "toolNamesUsed": [
+        "t02-customer-account/search_customer",
+        "t02-customer-account/get_customer_account",
+        "t02-customer-account/update_customer_tier"
+      ],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs"
+      },
+      "sourceReference": "tool-use/T-02-customer-account/runs/glm-claude-run1-stream.jsonl",
+      "dataQualityNotes": [
+        "The supplied setup log reset Priya's tier from gold to silver before execution; the MCP update returned success for silver to gold.",
+        "Claude Code JSONL metadata reports total_cost_usd=0.271775 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
+    },
+    {
+      "id": "run-glm-claude-code-tool-use-03",
+      "taskId": "tool-use-T-03",
+      "taskName": "T-03 — Incident remediation",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "claude-code",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "Checkout is experiencing elevated failures. Investigate the incident across Checkout, Payments, and Inventory using the available operational tools. Determine the most likely root cause using evidence from service health, dependencies, and recent deployments. If a specific deployment is confirmed as the cause and is safe to roll back, roll back only that deployment. Do not modify unrelated services. After any rollback, verify the affected services have recovered. Report the root cause, the evidence supporting it, the action taken, and the final service status.",
+      "responseMarkdown": "## Incident Report: Checkout Elevated Failures\n\n**Root cause:** Deployment **DEP-INV-455** (\"Reservation query optimization\", inventory v2026.10.06.8, deployed 08:31 IST) increased lock contention in inventory, causing request timeouts — which cascaded into checkout's failures.\n\n**Evidence:**\n- Checkout degraded (8.7% errors, p95 1840ms); inventory degraded (3.1% errors, p95 1680ms); payments healthy.\n- Checkout→payments dependency healthy (0.2% timeouts); Checkout→inventory degraded with **14.2% timeout rate** — pinpointing inventory, not payments.\n- DEP-INV-455 deployed ~11 min before DEP-CHK-301 (also healthy but `rollback_safe: false`), matching the timing of the degradation.\n- Inspection of DEP-INV-455: `root_cause_related: true`, error rate +0.026, latency +1210ms, evidence of increased lock contention; explicitly safe to roll back.\n\n**Action taken:** Rolled back **only** DEP-INV-455. Payments and checkout deployments were left untouched (payments healthy; DEP-CHK-301 not safe to roll back and not implicated).\n\n**Final status (verified post-rollback):**\n- Checkout: **healthy** — 0.6% errors, p95 310ms\n- Inventory: **healthy** — 0.4% errors, p95 230ms\n- Checkout→inventory dependency: **healthy** — 0.2% timeouts\n- Payments: healthy throughout (untouched)",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash claude -p \"$PROMPT\" --dangerously-skip-permissions --verbose --output-format stream-json < /dev/null",
+      "execution": {
+        "sessionId": "32f62a1f-c1dc-482e-b7ee-5ca05f40239c",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-03-incident-remediation",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 12.643,
+        "userSeconds": 1.962,
+        "systemSeconds": 0.51,
+        "cost": {
+          "amount": 0.0107,
+          "currency": "USD",
+          "reportedBy": "nconnect session total"
+        },
+        "tokens": {
+          "totalReported": 69642,
+          "input": 68826,
+          "output": 816,
+          "cachedInput": 54784,
+          "reportedBy": "nconnect session total; total computed as input + output",
+          "breakdownTotal": 69642,
+          "hasReportedTotalDiscrepancy": false
+        }
+      },
+      "warnings": [
+        "Claude Code emitted an unrecognized_model warning for the Nebius-routed GLM model alias; the run completed."
+      ],
+      "toolNamesUsed": [
+        "t03-incident-remediation/get_service_health",
+        "t03-incident-remediation/get_recent_deployments",
+        "t03-incident-remediation/get_dependency_health",
+        "t03-incident-remediation/inspect_deployment",
+        "t03-incident-remediation/rollback_deployment"
+      ],
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied Claude Code execution logs",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_recent_deployments",
+                "get_dependency_health",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": true
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": true
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_recent_deployments",
+          "get_dependency_health",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
+      },
+      "sourceReference": "tool-use/T-03-incident-remediation/runs/glm-claude-run1-stream.jsonl",
+      "dataQualityNotes": [
+        "The supplied setup log reset T-03 to the saved baseline before the run.",
+        "The trace records rollback of DEP-INV-455 only and subsequent health/dependency checks reporting recovery.",
+        "Claude Code JSONL metadata reports total_cost_usd=0.36453 with an unknown cost basis; execution.cost preserves the NConnect-reported session total.",
+        "The totalReported token count is calculated from the NConnect-reported input and output counts."
+      ]
     },
     {
       "id": "run-deepseek-opencode-reasoning-01",
@@ -2580,6 +3527,689 @@
       },
       "dataQualityNotes": [
         "The supplied task expected outcome says request D (administrator, maintenance=true) is ALLOWED, but this response marks D DENIED. The wording can be interpreted differently; recordedStatus follows the supplied expected outcome."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-tool-use-01",
+      "taskId": "tool-use-T-01",
+      "taskName": "T-01 — Travel booking free-change eligibility",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Maya Shah (maya.shah@example.test), find her next upcoming flight. Check whether it is eligible for a free change. If it is eligible, return the available free-change options, including the departure time and fare difference. Do not modify the booking. Use the available travel-booking tools to complete the task.",
+      "responseMarkdown": "Here's what I found for Maya Shah (customer CUS-101):\n\nNext upcoming flight — Booking BK-2041\n- Route: BOM → BLR\n- Departure: 2026-10-12 09:20 (+05:30)\n- Status: confirmed\n- Change policy: FREE_CHANGE\n\nFree-change eligibility: Eligible. The booking is confirmed and has the FREE_CHANGE policy.\n\nAvailable free-change options:\n1. 2026-10-13 09:20 (+05:30) — ₹0 fare difference\n2. 2026-10-13 18:45 (+05:30) — ₹0 fare difference\n\nBoth options have zero fare difference, so either change would be free. I did not modify the booking.\n\nThe listed departure date was earlier than the run date of 2026-10-15, which is unusual for an upcoming trip. This was the only confirmed booking returned for her email, so the booking reference or email may need to be checked.",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0abb606ffedIDr7qhAzK96GB",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-01-travel-booking",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 11.98,
+        "userSeconds": 7.888,
+        "systemSeconds": 2.09,
+        "cost": {
+          "amount": 0.0049779,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 27825,
+          "input": 27217,
+          "output": 421,
+          "reasoning": 187,
+          "cachedInput": 13056,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 27638,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t01-travel-booking/search_upcoming_trips",
+        "t01-travel-booking/check_change_eligibility",
+        "t01-travel-booking/list_change_options"
+      ],
+      "toolCalls": [
+        {
+          "name": "t01-travel-booking/search_upcoming_trips",
+          "status": "completed",
+          "input": {
+            "email": "maya.shah@example.test"
+          },
+          "output": {
+            "customer_id": "CUS-101",
+            "customer_name": "Maya Shah",
+            "upcoming_bookings": [
+              {
+                "id": "BK-2041",
+                "customer_id": "CUS-101",
+                "status": "confirmed",
+                "departure": "2026-10-12T09:20:00+05:30",
+                "route": "BOM-BLR",
+                "change_policy": "FREE_CHANGE"
+              }
+            ]
+          }
+        },
+        {
+          "name": "t01-travel-booking/check_change_eligibility",
+          "status": "completed",
+          "input": {
+            "booking_id": "BK-2041"
+          },
+          "output": {
+            "booking_id": "BK-2041",
+            "eligible_for_free_change": true,
+            "reason": "Booking is confirmed and has FREE_CHANGE policy."
+          }
+        },
+        {
+          "name": "t01-travel-booking/list_change_options",
+          "status": "completed",
+          "input": {
+            "booking_id": "BK-2041"
+          },
+          "output": {
+            "booking_id": "BK-2041",
+            "options": [
+              {
+                "departure": "2026-10-13T09:20:00+05:30",
+                "fare_difference": 0
+              },
+              {
+                "departure": "2026-10-13T18:45:00+05:30",
+                "fare_difference": 0
+              }
+            ]
+          }
+        }
+      ],
+      "toolTraceComplete": true,
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs"
+      },
+      "sourceReference": "tool-use/T-01-travel-booking/runs/deepseek-opencode-run1.txt",
+      "dataQualityNotes": [
+        "Structured MCP tool calls and their returned data are preserved from the OpenCode JSON log.",
+        "The booking departure and both offered alternatives were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-tool-use-02",
+      "taskId": "tool-use-T-02",
+      "taskName": "T-02 — Customer account tier upgrade",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Priya Mehta (priya.mehta@example.test), inspect her customer account. If she is eligible for a tier upgrade, upgrade her from silver to gold. If she is not eligible, do not modify the account. Use the available customer-account tools to complete the task and report the final tier.",
+      "responseMarkdown": "Done.\n\n- Customer: Priya Mehta (CUS-201)\n- Status: active, verified, payment current — eligible for upgrade\n- Change: silver → gold\n- Final tier: gold",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0a9b726ffekoLWjQdPXBYTTd",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-02-customer-account",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 9.478,
+        "userSeconds": 6.83,
+        "systemSeconds": 1.703,
+        "cost": {
+          "amount": 0.0041604,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 27141,
+          "input": 26872,
+          "output": 240,
+          "reasoning": 29,
+          "cachedInput": 14080,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 27112,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t02-customer-account/search_customer",
+        "t02-customer-account/get_customer_account",
+        "t02-customer-account/update_customer_tier"
+      ],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs"
+      },
+      "sourceReference": "tool-use/T-02-customer-account/runs/deepseek-opencode-run1.txt",
+      "dataQualityNotes": [
+        "The setup log reset Priya's tier to silver before the run.",
+        "The tool trace shows successful customer lookup, eligibility check, and silver-to-gold update. The update result reported success and the new tier as gold.",
+        "The trace did not include a separate post-update account read.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-deepseek-opencode-tool-use-03",
+      "taskId": "tool-use-T-03",
+      "taskName": "T-03 — Incident remediation",
+      "categoryId": "tool-use",
+      "modelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "Checkout is experiencing elevated failures. Investigate the incident across Checkout, Payments, and Inventory using the available operational tools. Determine the most likely root cause using evidence from service health, dependencies, and recent deployments. If a specific deployment is confirmed as the cause and is safe to roll back, roll back only that deployment. Do not modify unrelated services. After any rollback, verify the affected services have recovered. Report the root cause, the evidence supporting it, the action taken, and the final service status.",
+      "responseMarkdown": "## Incident Report\n\n### Root Cause\nDeployment DEP-INV-455 on the Inventory service (version 2026.10.06.8, Reservation query optimization). The query optimization increased lock contention, causing Inventory request timeouts and cascading into Checkout.\n\n### Evidence\n\nService health before rollback:\n- Checkout: degraded, error rate 8.7%, p95 latency 1840 ms\n- Inventory: degraded, error rate 3.1%, p95 latency 1680 ms\n- Payments: healthy, error rate 0.4%, p95 latency 240 ms\n\nDependencies:\n- checkout → inventory: degraded, 14.2% timeout rate\n- checkout → payments: healthy, 0.2% timeout rate\n\nDeployment inspection confirmed DEP-INV-455 as root-cause-related and safe to roll back. The inspection reported an error-rate change of +0.026 and latency change of +1210 ms. DEP-INV-448, DEP-PAY-501, and DEP-CHK-301 were identified as unrelated.\n\n### Action Taken\nRolled back only DEP-INV-455. The rollback tool reported success. No other deployments were modified.\n\n### Final Status\n- Inventory: healthy, error rate 0.4%, p95 latency 230 ms\n- Checkout: healthy, error rate 0.6%, p95 latency 310 ms\n- Payments: healthy, error rate 0.4%, p95 latency 240 ms\n- checkout → inventory: healthy, 0.2% timeout rate\n- checkout → payments: healthy, 0.2% timeout rate\n\nThe post-rollback service and dependency checks confirmed recovery.",
+      "command": "nebiusrelay --main deepseek-ai/DeepSeek-V4.1-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0a50480ffeSphfycd2q0p901",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-03-incident-remediation",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 16.211,
+        "userSeconds": 8.937,
+        "systemSeconds": 2.659,
+        "cost": {
+          "amount": 0.0066066,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 51496,
+          "input": 49630,
+          "output": 1717,
+          "reasoning": 149,
+          "cachedInput": 35072,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 51347,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t03-incident-remediation/get_service_health",
+        "t03-incident-remediation/get_dependency_health",
+        "t03-incident-remediation/get_recent_deployments",
+        "t03-incident-remediation/inspect_deployment",
+        "t03-incident-remediation/rollback_deployment"
+      ],
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_dependency_health",
+                "get_recent_deployments",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": true
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": false
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_dependency_health",
+          "get_recent_deployments",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
+      },
+      "sourceReference": "tool-use/T-03-incident-remediation/runs/deepseek-opencode-run1.txt",
+      "dataQualityNotes": [
+        "The setup log reset T-03 to the saved baseline before execution.",
+        "Several exploratory dependency-health calls for nonexistent dependency relationships returned errors; the model subsequently identified checkout → inventory as degraded, rolled back DEP-INV-455, and verified recovery.",
+        "The trace confirms the rollback tool reported success and subsequent service and dependency checks showed recovery.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-tool-use-01",
+      "taskId": "tool-use-T-01",
+      "taskName": "T-01 — Travel booking free-change eligibility",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Maya Shah (maya.shah@example.test), find her next upcoming flight. Check whether it is eligible for a free change. If it is eligible, return the available free-change options, including the departure time and fare difference. Do not modify the booking. Use the available travel-booking tools to complete the task.",
+      "responseMarkdown": "Here's the complete summary for Maya Shah (maya.shah@example.test):\n\n## Next Upcoming Flight\n- Booking ID: BK-2041\n- Route: BOM → BLR\n- Departure: 2026-10-12, 09:20 AM (IST, +05:30)\n- Status: Confirmed\n- Change policy: FREE_CHANGE\n\n## Free-Change Eligibility\nEligible — the booking is confirmed and has the FREE_CHANGE policy.\n\n## Available Free-Change Options\n1. 2026-10-13, 09:20 AM IST (+05:30) — ₹0 fare difference\n2. 2026-10-13, 06:45 PM IST (+05:30) — ₹0 fare difference\n\nBoth options are free of any fare difference. No changes were made; the booking remains untouched.\n\nThe booking system returned this as Maya's next upcoming confirmed trip.",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0aac8cbffeCqaIwPAJ4W4t9j",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-01-travel-booking",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 13.233,
+        "userSeconds": 9.908,
+        "systemSeconds": 2.869,
+        "cost": {
+          "amount": 0.0017641,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 26927,
+          "input": 26076,
+          "output": 382,
+          "reasoning": 469,
+          "cachedInput": 17152,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 26458,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t01-travel-booking/search_upcoming_trips",
+        "t01-travel-booking/check_change_eligibility",
+        "t01-travel-booking/list_change_options"
+      ],
+      "toolCalls": [
+        {
+          "name": "t01-travel-booking/search_upcoming_trips",
+          "status": "completed",
+          "input": {
+            "email": "maya.shah@example.test"
+          },
+          "output": {
+            "customer_id": "CUS-101",
+            "customer_name": "Maya Shah",
+            "upcoming_bookings": [
+              {
+                "id": "BK-2041",
+                "customer_id": "CUS-101",
+                "status": "confirmed",
+                "departure": "2026-10-12T09:20:00+05:30",
+                "route": "BOM-BLR",
+                "change_policy": "FREE_CHANGE"
+              }
+            ]
+          }
+        },
+        {
+          "name": "t01-travel-booking/check_change_eligibility",
+          "status": "completed",
+          "input": {
+            "booking_id": "BK-2041"
+          },
+          "output": {
+            "booking_id": "BK-2041",
+            "eligible_for_free_change": true,
+            "reason": "Booking is confirmed and has FREE_CHANGE policy."
+          }
+        },
+        {
+          "name": "t01-travel-booking/list_change_options",
+          "status": "completed",
+          "input": {
+            "booking_id": "BK-2041"
+          },
+          "output": {
+            "booking_id": "BK-2041",
+            "options": [
+              {
+                "departure": "2026-10-13T09:20:00+05:30",
+                "fare_difference": 0
+              },
+              {
+                "departure": "2026-10-13T18:45:00+05:30",
+                "fare_difference": 0
+              }
+            ]
+          }
+        }
+      ],
+      "toolTraceComplete": true,
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs"
+      },
+      "sourceReference": "tool-use/T-01-travel-booking/runs/glm-opencode-run1.txt",
+      "dataQualityNotes": [
+        "Structured MCP tool calls and their returned data are preserved from the OpenCode JSON log.",
+        "The booking departure and both offered alternatives were already in the past on the run date of 2026-10-15; the seeded booking data may be stale.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-tool-use-02",
+      "taskId": "tool-use-T-02",
+      "taskName": "T-02 — Customer account tier upgrade",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "For Priya Mehta (priya.mehta@example.test), inspect her customer account. If she is eligible for a tier upgrade, upgrade her from silver to gold. If she is not eligible, do not modify the account. Use the available customer-account tools to complete the task and report the final tier.",
+      "responseMarkdown": "Task complete — final tier: gold.\n\nSummary:\n- Customer lookup: Priya Mehta (priya.mehta@example.test), CUS-201\n- Eligibility: active, verified, payment current\n- Upgrade: silver → gold (successful)\n- Verified final state: current_tier = gold\n\nThe account met all three eligibility requirements, and the subsequent account read confirmed the final tier as gold.",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0a6179cffeCFg7u9I09Y4myf",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-02-customer-account",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 11.739,
+        "userSeconds": 7.789,
+        "systemSeconds": 1.974,
+        "cost": {
+          "amount": 0.00183175,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 32970,
+          "input": 32431,
+          "output": 334,
+          "reasoning": 205,
+          "cachedInput": 22016,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 32765,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t02-customer-account/search_customer",
+        "t02-customer-account/get_customer_account",
+        "t02-customer-account/update_customer_tier"
+      ],
+      "evaluation": {
+        "status": "not_independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs"
+      },
+      "sourceReference": "tool-use/T-02-customer-account/runs/glm-opencode-run1.txt",
+      "dataQualityNotes": [
+        "The setup log reset Priya's tier to silver before execution.",
+        "The tool trace shows successful lookup, eligibility inspection, tier update, and a subsequent account read confirming current_tier as gold.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
+      ]
+    },
+    {
+      "id": "run-glm-opencode-tool-use-03",
+      "taskId": "tool-use-T-03",
+      "taskName": "T-03 — Incident remediation",
+      "categoryId": "tool-use",
+      "modelId": "zai-org/GLM-5.3-Flash",
+      "harnessId": "opencode",
+      "attempt": 1,
+      "recordedStatus": "pass",
+      "prompt": "Checkout is experiencing elevated failures. Investigate the incident across Checkout, Payments, and Inventory using the available operational tools. Determine the most likely root cause using evidence from service health, dependencies, and recent deployments. If a specific deployment is confirmed as the cause and is safe to roll back, roll back only that deployment. Do not modify unrelated services. After any rollback, verify the affected services have recovered. Report the root cause, the evidence supporting it, the action taken, and the final service status.",
+      "responseMarkdown": "# Incident Report: Elevated Checkout Failures\n\n## Root Cause\nDEP-INV-455 — the Inventory deployment Reservation query optimization (version 2026.10.06.8, deployed 2026-10-06 08:31 IST). The optimization introduced database lock contention, causing Inventory timeouts that cascaded into Checkout.\n\n## Evidence\n1. Service health at onset: Checkout degraded (8.7% errors, 1840 ms p95); Inventory degraded (3.1% errors, 1680 ms p95); Payments healthy.\n2. Dependency health: checkout → inventory degraded with a 14.2% timeout rate, while checkout → payments was healthy at 0.2% timeouts.\n3. Deployment inspection confirmed DEP-INV-455 as root_cause_related, with an error-rate change of +0.026 and latency change of +1210 ms. Its evidence identified lock contention from the reservation query optimization.\n4. DEP-INV-448, DEP-CHK-301, and DEP-PAY-501 were confirmed unrelated. DEP-CHK-301 was not rollback-safe.\n\n## Action Taken\nRolled back only DEP-INV-455. The rollback was confirmed safe and succeeded. No unrelated deployments or services were modified.\n\n## Final Service Status\n- Checkout: healthy — 0.6% errors, 310 ms p95\n- Payments: healthy — 0.4% errors, 240 ms p95\n- Inventory: healthy — 0.4% errors, 230 ms p95\n- checkout → inventory: healthy — 0.2% timeout rate\n- checkout → payments: healthy — 0.2% timeout rate\n\nPost-rollback service and dependency checks confirmed recovery.",
+      "command": "nebiusrelay --main zai-org/GLM-5.3-Flash opencode run --format json \"$PROMPT\"",
+      "execution": {
+        "sessionId": "ses_ec0a4712affeRWTxRmlVK0CgU1",
+        "workingDirectory": "/home/shivamkatare/nebius-benchmark/tool-use/T-03-incident-remediation",
+        "provider": "nebiusrelay",
+        "reasoningEffort": null,
+        "wallClockSeconds": 28.457,
+        "userSeconds": 14.247,
+        "systemSeconds": 3.582,
+        "cost": {
+          "amount": 0.00434175,
+          "currency": "USD",
+          "reportedBy": "OpenCode summed step_finish cost"
+        },
+        "tokens": {
+          "totalReported": 89985,
+          "input": 86961,
+          "output": 2079,
+          "reasoning": 945,
+          "cachedInput": 68096,
+          "reportedBy": "OpenCode summed step_finish token counters",
+          "breakdownTotal": 89040,
+          "hasReportedTotalDiscrepancy": true
+        }
+      },
+      "toolNamesUsed": [
+        "t03-incident-remediation/get_service_health",
+        "t03-incident-remediation/get_dependency_health",
+        "t03-incident-remediation/get_recent_deployments",
+        "t03-incident-remediation/inspect_deployment",
+        "t03-incident-remediation/rollback_deployment"
+      ],
+      "evaluation": {
+        "status": "independently_verified",
+        "recordedStatusSource": "supplied OpenCode execution logs",
+        "previousEvaluationStatus": "not_independently_verified",
+        "verifiedResult": "pass",
+        "evaluator": "evaluators/tool-use/t03_incident_remediation.py",
+        "evaluatorVersion": "1.0.0",
+        "verificationMethod": "deterministic_task_specific_script",
+        "verificationReason": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "statusMatchesRecordedStatus": true,
+        "checkedAt": "2026-10-25T02:20:32+00:00",
+        "categoryId": "tool-use",
+        "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
+        "score": 1.0,
+        "checksPassed": 12,
+        "checksFailed": 0,
+        "checksForReview": 0,
+        "checks": [
+          {
+            "id": "tool_usage",
+            "status": "pass",
+            "detail": "All required operational tools were invoked during the run.",
+            "evidence": {
+              "toolNamesObserved": [
+                "get_service_health",
+                "get_dependency_health",
+                "get_recent_deployments",
+                "inspect_deployment",
+                "rollback_deployment"
+              ]
+            }
+          },
+          {
+            "id": "service_investigation",
+            "status": "pass",
+            "detail": "The agent investigated service health across Checkout, Payments, and Inventory rather than assuming Checkout was the origin.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_analysis",
+            "status": "pass",
+            "detail": "Dependency health evidence was used to identify degraded Checkout-to-Inventory calls while confirming Payments was healthy.",
+            "evidence": {
+              "depToolUsed": true,
+              "depDegradedNoted": true
+            }
+          },
+          {
+            "id": "deployment_analysis",
+            "status": "pass",
+            "detail": "The agent analyzed recent deployments and inspected the suspected Inventory deployment DEP-INV-455.",
+            "evidence": {
+              "hasRecentDeployments": true,
+              "hasInspectDeployment": true,
+              "targetInspected": true
+            }
+          },
+          {
+            "id": "root_cause_identification",
+            "status": "pass",
+            "detail": "Identified Inventory deployment DEP-INV-455 (version 2026.10.06.8) as the root cause due to query lock contention and timeouts.",
+            "evidence": {
+              "deploymentId": "DEP-INV-455",
+              "service": "Inventory",
+              "mechanismIdentified": true
+            }
+          },
+          {
+            "id": "rollback_safety",
+            "status": "pass",
+            "detail": "Confirmed that DEP-INV-455 was safe to roll back before initiating remediation.",
+            "evidence": {
+              "verifiedSafe": true,
+              "unrelatedSafetyNoted": true
+            }
+          },
+          {
+            "id": "targeted_remediation",
+            "status": "pass",
+            "detail": "Remediation targeted only root-cause deployment DEP-INV-455 without modifying unrelated services.",
+            "evidence": {
+              "target": "DEP-INV-455",
+              "unrelatedModified": false
+            }
+          },
+          {
+            "id": "rollback_result",
+            "status": "pass",
+            "detail": "Rollback of DEP-INV-455 completed successfully."
+          },
+          {
+            "id": "service_recovery",
+            "status": "pass",
+            "detail": "Post-remediation service recovery verified for Checkout, Payments, and Inventory.",
+            "evidence": {
+              "checkout": true,
+              "inventory": true,
+              "payments": true
+            }
+          },
+          {
+            "id": "dependency_recovery",
+            "status": "pass",
+            "detail": "Verified that Checkout-to-Inventory dependency recovered to normal healthy operational status."
+          },
+          {
+            "id": "state_integrity",
+            "status": "pass",
+            "detail": "State integrity maintained; only the confirmed root-cause deployment was remediated."
+          },
+          {
+            "id": "report_completeness",
+            "status": "pass",
+            "detail": "Final report comprehensively covers root cause, operational evidence, safe action, and final status."
+          }
+        ],
+        "toolNamesObserved": [
+          "get_service_health",
+          "get_dependency_health",
+          "get_recent_deployments",
+          "inspect_deployment",
+          "rollback_deployment"
+        ],
+        "toolTracePresent": true,
+        "toolTraceComplete": false
+      },
+      "sourceReference": "tool-use/T-03-incident-remediation/runs/glm-opencode-run1.txt",
+      "dataQualityNotes": [
+        "The setup log reset T-03 to the saved baseline before execution.",
+        "OpenCode used its internal todowrite tool for task tracking; it is not an MCP server tool and is excluded from toolNamesUsed.",
+        "The recorded trace shows the rollback of DEP-INV-455 and subsequent health/dependency checks reporting recovery.",
+        "OpenCode token totals include cached and reasoning tokens. Input includes cached input; totalReported is the sum of per-step total counters."
       ]
     }
   ]
