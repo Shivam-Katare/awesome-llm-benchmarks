@@ -342,16 +342,16 @@
         },
         "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
         "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
-        "budget": 10.0,
+        "budget": 10,
         "selectedItems": [
           "A",
           "C"
         ],
-        "calculatedTotalCost": 10.0,
-        "reportedTotalCost": 10.0,
-        "calculatedTotalGain": 28.0,
-        "reportedTotalGain": 28.0,
-        "calculatedOptimalGain": 28.0,
+        "calculatedTotalCost": 10,
+        "reportedTotalCost": 10,
+        "calculatedTotalGain": 28,
+        "reportedTotalGain": 28,
+        "calculatedOptimalGain": 28,
         "withinBudget": true,
         "optimalCombination": true
       }
@@ -710,16 +710,16 @@
         },
         "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
         "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
-        "budget": 10.0,
+        "budget": 10,
         "selectedItems": [
           "A",
           "C"
         ],
-        "calculatedTotalCost": 10.0,
-        "reportedTotalCost": 10.0,
-        "calculatedTotalGain": 28.0,
-        "reportedTotalGain": 28.0,
-        "calculatedOptimalGain": 28.0,
+        "calculatedTotalCost": 10,
+        "reportedTotalCost": 10,
+        "calculatedTotalGain": 28,
+        "reportedTotalGain": 28,
+        "calculatedOptimalGain": 28,
         "withinBudget": true,
         "optimalCombination": true
       },
@@ -949,7 +949,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -1348,7 +1348,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -2037,17 +2037,27 @@
           "promptTokens": 119650,
           "completionTokens": 5047,
           "cachedTokens": 107552,
-          "totalTokens": 124697
+          "totalTokens": 124697,
+          "totalReported": 124697,
+          "input": 119650,
+          "output": 5047,
+          "cachedInput": 107552,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0205,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0205,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 129.198,
           "userSeconds": 8.894,
           "sysSeconds": 4.322
-        }
+        },
+        "wallClockSeconds": 129.198,
+        "userSeconds": 8.894,
+        "systemSeconds": 4.322
       },
       "warnings": [
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
@@ -2106,17 +2116,27 @@
           "promptTokens": 72144,
           "completionTokens": 2365,
           "cachedTokens": 47104,
-          "totalTokens": 74509
+          "totalTokens": 74509,
+          "totalReported": 74509,
+          "input": 72144,
+          "output": 2365,
+          "cachedInput": 47104,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0245,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0245,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 54.408,
           "userSeconds": 4.472,
           "sysSeconds": 3.697
-        }
+        },
+        "wallClockSeconds": 54.408,
+        "userSeconds": 4.472,
+        "systemSeconds": 3.697
       },
       "warnings": [
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
@@ -2175,17 +2195,27 @@
           "promptTokens": null,
           "completionTokens": null,
           "cachedTokens": null,
-          "totalTokens": null
+          "totalTokens": null,
+          "totalReported": null,
+          "input": null,
+          "output": null,
+          "cachedInput": null,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": null,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": null,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": null,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": null,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [],
       "toolNamesUsed": [],
@@ -2245,17 +2275,27 @@
           "promptTokens": null,
           "completionTokens": null,
           "cachedTokens": null,
-          "totalTokens": null
+          "totalTokens": null,
+          "totalReported": null,
+          "input": null,
+          "output": null,
+          "cachedInput": null,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": null,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": null,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": null,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": null,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [],
       "toolNamesUsed": [],
@@ -2315,17 +2355,27 @@
           "promptTokens": 92568,
           "completionTokens": 1389,
           "cachedTokens": 44032,
-          "totalTokens": 93957
+          "totalTokens": 93957,
+          "totalReported": 93957,
+          "input": 92568,
+          "output": 1389,
+          "cachedInput": 44032,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0146,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0146,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 30.411,
           "userSeconds": 6.122,
           "sysSeconds": 3.762
-        }
+        },
+        "wallClockSeconds": 30.411,
+        "userSeconds": 6.122,
+        "systemSeconds": 3.762
       },
       "warnings": [
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
@@ -2421,17 +2471,27 @@
           "promptTokens": 141932,
           "completionTokens": 6237,
           "cachedTokens": 109824,
-          "totalTokens": 134945
+          "totalTokens": 134945,
+          "totalReported": 134945,
+          "input": 141932,
+          "output": 6237,
+          "cachedInput": 109824,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0501,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0501,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 328.926,
           "userSeconds": 7.321,
           "sysSeconds": 5.437
-        }
+        },
+        "wallClockSeconds": 328.926,
+        "userSeconds": 7.321,
+        "systemSeconds": 5.437
       },
       "warnings": [
         "Codex could not find bubblewrap on PATH; it reported that it would use its bundled bubblewrap."
@@ -2815,16 +2875,16 @@
         },
         "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
         "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
-        "budget": 10.0,
+        "budget": 10,
         "selectedItems": [
           "A",
           "C"
         ],
-        "calculatedTotalCost": 10.0,
-        "reportedTotalCost": 10.0,
-        "calculatedTotalGain": 28.0,
-        "reportedTotalGain": 28.0,
-        "calculatedOptimalGain": 28.0,
+        "calculatedTotalCost": 10,
+        "reportedTotalCost": 10,
+        "calculatedTotalGain": 28,
+        "reportedTotalGain": 28,
+        "calculatedOptimalGain": 28,
         "withinBudget": true,
         "optimalCombination": true
       },
@@ -3200,17 +3260,17 @@
         },
         "evaluationCriteria": "PASS if the chosen set is valid and its gain equals the maximum possible gain of 28. A correct alternative is accepted only if it has the same maximum gain and satisfies the budget.",
         "whatItMeasures": "Combinatorial search, optimization under constraints, and checking alternatives rather than stopping at the first valid set.",
-        "budget": 10.0,
+        "budget": 10,
         "selectedItems": [
           "B",
           "D",
           "E"
         ],
-        "calculatedTotalCost": 10.0,
-        "reportedTotalCost": 10.0,
-        "calculatedTotalGain": 27.0,
-        "reportedTotalGain": 27.0,
-        "calculatedOptimalGain": 28.0,
+        "calculatedTotalCost": 10,
+        "reportedTotalCost": 10,
+        "calculatedTotalGain": 27,
+        "reportedTotalGain": 27,
+        "calculatedOptimalGain": 28,
         "withinBudget": true,
         "optimalCombination": false
       },
@@ -3439,7 +3499,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -3726,7 +3786,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -4326,17 +4386,27 @@
           "promptTokens": 105898,
           "completionTokens": 2761,
           "cachedTokens": 77312,
-          "totalTokens": 108659
+          "totalTokens": 108659,
+          "totalReported": 108659,
+          "input": 105898,
+          "output": 2761,
+          "cachedInput": 77312,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0351,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0351,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 20.181,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": 20.181,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [
         "Claude Code emitted claude-code:unrecognized_model, but the run completed and returned a result."
@@ -4399,17 +4469,27 @@
           "promptTokens": 452512,
           "completionTokens": 41056,
           "cachedTokens": 356608,
-          "totalTokens": 493568
+          "totalTokens": 493568,
+          "totalReported": 493568,
+          "input": 452512,
+          "output": 41056,
+          "cachedInput": 356608,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.185,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.185,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 150.229,
           "userSeconds": 189.79,
           "sysSeconds": 66.579
-        }
+        },
+        "wallClockSeconds": 150.229,
+        "userSeconds": 189.79,
+        "systemSeconds": 66.579
       },
       "warnings": [],
       "toolNamesUsed": [
@@ -4474,17 +4554,27 @@
           "promptTokens": 153326,
           "completionTokens": 5086,
           "cachedTokens": 135936,
-          "totalTokens": 158412
+          "totalTokens": 158412,
+          "totalReported": 158412,
+          "input": 153326,
+          "output": 5086,
+          "cachedInput": 135936,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0521,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0521,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 100.55,
           "userSeconds": 11.118,
           "sysSeconds": 7.408
-        }
+        },
+        "wallClockSeconds": 100.55,
+        "userSeconds": 11.118,
+        "systemSeconds": 7.408
       },
       "warnings": [
         "Claude Code emitted claude-code:unrecognized_model, but the run completed and returned a result."
@@ -4583,17 +4673,27 @@
           "promptTokens": 82797,
           "completionTokens": 3447,
           "cachedTokens": 69056,
-          "totalTokens": 86244
+          "totalTokens": 86244,
+          "totalReported": 86244,
+          "input": 82797,
+          "output": 3447,
+          "cachedInput": 69056,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0141,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0141,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 130.145,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": 130.145,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [
         "Claude Code emitted claude-code:unrecognized_model, but the run completed and returned a result."
@@ -4656,17 +4756,27 @@
           "promptTokens": 128175,
           "completionTokens": 6472,
           "cachedTokens": 73216,
-          "totalTokens": 134647
+          "totalTokens": 134647,
+          "totalReported": 134647,
+          "input": 128175,
+          "output": 6472,
+          "cachedInput": 73216,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0225,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0225,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 48.106,
           "userSeconds": 4.627,
           "sysSeconds": 2.526
-        }
+        },
+        "wallClockSeconds": 48.106,
+        "userSeconds": 4.627,
+        "systemSeconds": 2.526
       },
       "warnings": [
         "The supplied review notes flag an input-validation edge case but do not specify the exact failing input."
@@ -4733,17 +4843,27 @@
           "promptTokens": 117212,
           "completionTokens": 2592,
           "cachedTokens": 28160,
-          "totalTokens": 119804
+          "totalTokens": 119804,
+          "totalReported": 119804,
+          "input": 117212,
+          "output": 2592,
+          "cachedInput": 28160,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0189,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0189,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 72.348,
           "userSeconds": 3.914,
           "sysSeconds": 3.401
-        }
+        },
+        "wallClockSeconds": 72.348,
+        "userSeconds": 3.914,
+        "systemSeconds": 3.401
       },
       "warnings": [
         "Claude Code emitted an HTTP 529 overloaded response and retried; the run subsequently completed successfully."
@@ -5646,7 +5766,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -5987,7 +6107,7 @@
         "checkedAt": "2026-10-25T02:20:32+00:00",
         "categoryId": "tool-use",
         "summary": "The run demonstrated complete multi-service investigation, identified DEP-INV-455, confirmed rollback safety, executed targeted rollback, and verified service recovery.",
-        "score": 1.0,
+        "score": 1,
         "checksPassed": 12,
         "checksFailed": 0,
         "checksForReview": 0,
@@ -6557,17 +6677,27 @@
           "promptTokens": 83898,
           "completionTokens": 2967,
           "cachedTokens": 62208,
-          "totalTokens": 86865
+          "totalTokens": 86865,
+          "totalReported": 86865,
+          "input": 83898,
+          "output": 2967,
+          "cachedInput": 62208,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0100674,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0100674,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": null,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": null,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [],
       "toolNamesUsed": [
@@ -6627,17 +6757,27 @@
           "promptTokens": 504994,
           "completionTokens": 29053,
           "cachedTokens": 419840,
-          "totalTokens": 534047
+          "totalTokens": 534047,
+          "totalReported": 534047,
+          "input": 504994,
+          "output": 29053,
+          "cachedInput": 419840,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0604098,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0604098,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 638.807,
           "userSeconds": 189.79,
           "sysSeconds": 66.579
-        }
+        },
+        "wallClockSeconds": 638.807,
+        "userSeconds": 189.79,
+        "systemSeconds": 66.579
       },
       "warnings": [],
       "toolNamesUsed": [
@@ -6702,17 +6842,27 @@
           "promptTokens": 164732,
           "completionTokens": 6369,
           "cachedTokens": 151808,
-          "totalTokens": 171101
+          "totalTokens": 171101,
+          "totalReported": 171101,
+          "input": 164732,
+          "output": 6369,
+          "cachedInput": 151808,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.01152,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.01152,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 93.349,
           "userSeconds": 40.954,
           "sysSeconds": 13.732
-        }
+        },
+        "wallClockSeconds": 93.349,
+        "userSeconds": 40.954,
+        "systemSeconds": 13.732
       },
       "warnings": [],
       "toolNamesUsed": [
@@ -6809,17 +6959,27 @@
           "promptTokens": null,
           "completionTokens": null,
           "cachedTokens": null,
-          "totalTokens": null
+          "totalTokens": null,
+          "totalReported": null,
+          "input": null,
+          "output": null,
+          "cachedInput": null,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": null,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": null,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": null,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": null,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [
         "The attempt was recorded as a timeout failure."
@@ -6874,17 +7034,27 @@
           "promptTokens": 47702,
           "completionTokens": 32316,
           "cachedTokens": 9728,
-          "totalTokens": 80018
+          "totalTokens": 80018,
+          "totalReported": 80018,
+          "input": 47702,
+          "output": 32316,
+          "cachedInput": 9728,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.0218541,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.0218541,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 289.657,
           "userSeconds": null,
           "sysSeconds": null
-        }
+        },
+        "wallClockSeconds": 289.657,
+        "userSeconds": null,
+        "systemSeconds": null
       },
       "warnings": [
         "The agent process exited successfully, but the independent evaluator returned FAIL."
@@ -6948,17 +7118,27 @@
           "promptTokens": 592767,
           "completionTokens": 21071,
           "cachedTokens": 342784,
-          "totalTokens": 613838
+          "totalTokens": 613838,
+          "totalReported": 613838,
+          "input": 592767,
+          "output": 21071,
+          "cachedInput": 342784,
+          "reportedBy": "session total"
         },
         "cost": {
           "totalCost": 0.04803295,
-          "currency": "USD"
+          "currency": "USD",
+          "amount": 0.04803295,
+          "reportedBy": "session total"
         },
         "timings": {
           "realSeconds": 362.124,
           "userSeconds": 156.982,
           "sysSeconds": 54.168
-        }
+        },
+        "wallClockSeconds": 362.124,
+        "userSeconds": 156.982,
+        "systemSeconds": 54.168
       },
       "warnings": [],
       "toolNamesUsed": [
